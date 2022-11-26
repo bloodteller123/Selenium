@@ -40,4 +40,10 @@ public class PlayerTest {
         p.addCard(new Card("Q", "S"));
         assertEquals(32,p.calculateScore());
     }
+    @Test
+    void setScoreTest(){
+        Player p = new Player(1);
+        p.setScore(10);
+        assertEquals(10, p.getScore()t);
+    }
 }

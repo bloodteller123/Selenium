@@ -19,5 +19,5 @@ public class AcceptanceTest {
     void teardown() {
         driver.quit();
     }
-    
+
 }

@@ -21,6 +21,9 @@ public class Player {
     public int getScore(){
         return this.score;
     }
+    public void setScore(int val){
+        this.score += val;
+    }
     public int calculateScore(){
         int totalScore = 0;
         for(Card card : this.cards){
