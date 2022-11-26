@@ -21,6 +21,21 @@ public class Player {
     public int getScore(){
         return this.score;
     }
+    public int calculateScore(){
+        int totalScore = 0;
+        for(Card card : this.cards){
+            if(card.getRank()=="8"){
+                totalScore+=50;
+            }else if(card.getRank()=="J" || card.getRank()=="Q" || card.getRank()=="K"){
+                totalScore+=10;
+            }else if(card.getRank()=="A"){
+                totalScore+=1;
+            }else{
+                totalScore+=Integer.parseInt(card.getRank());
+            }
+        }
+        return totalScore;
+    }
     public int getId(){
         return this.id;
     }
