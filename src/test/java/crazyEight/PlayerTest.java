@@ -39,6 +39,5 @@ public class PlayerTest {
         p.addCard(new Card("A", "S"));
         p.addCard(new Card("Q", "S"));
         assertEquals(32,p.calculateScore());
-
     }
 }
