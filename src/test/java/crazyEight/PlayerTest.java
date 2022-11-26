@@ -12,4 +12,5 @@ public class PlayerTest {
         assertEquals(1,p.getId());
         assertEquals(0,p.getScore());
     }
+
 }
