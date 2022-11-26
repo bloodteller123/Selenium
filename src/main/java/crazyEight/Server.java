@@ -52,6 +52,7 @@ public class Server extends WebSocketServer {
         System.out.println("Message from client: " + message);
     }
 
+    
     @Override
     public void onError(WebSocket conn, Exception ex) {
         if (conn != null) {
@@ -65,5 +66,8 @@ public class Server extends WebSocketServer {
         Server s = new Server(port);
         s.start();
         System.out.println("game server started on port: " + s.getPort());
+    }
+    public void setPlayers(Player p){
+        players.add(p);
     }
 }
