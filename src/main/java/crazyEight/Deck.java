@@ -22,6 +22,24 @@ public class Deck {
             }
         }
     }
+    public Card drawCard(){
+        return this.cards.get(this.index++);
+    }
+    public boolean isExausted(){
+        return this.index==this.cards.size();
+    }
+    public void resetDeck(){
+        this.cards = new ArrayList<>();
+        index = 0;
+        buildCards();
+        Collections.shuffle(this.cards);
+    }
+    public int getInd(){
+        return this.index;
+    }
+    public int getCardsSize(){
+        return this.cards.size();
+    }
     public Deck getDeck(){return this;}
 }
 
