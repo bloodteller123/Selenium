@@ -44,6 +44,6 @@ public class PlayerTest {
     void setScoreTest(){
         Player p = new Player(1);
         p.setScore(10);
-        assertEquals(10, p.getScore()t);
+        assertEquals(10, p.getScore());
     }
 }
