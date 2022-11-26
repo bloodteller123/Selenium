@@ -52,7 +52,15 @@ public class Server extends WebSocketServer {
         System.out.println("Message from client: " + message);
     }
 
-    
+
+    public boolean checkWin(){
+        return players.stream().anyMatch(p -> p.getScore()>=100);
+    }
+    public void updateScore(){
+        for(Player p: players){
+            p.setScore(p.calculateScore());
+        }
+    }
     @Override
     public void onError(WebSocket conn, Exception ex) {
         if (conn != null) {
