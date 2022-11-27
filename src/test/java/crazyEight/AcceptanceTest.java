@@ -45,7 +45,9 @@ public class AcceptanceTest {
     void row41(){
         driver1.get(sampleFile.toUri().toString());
         driver2.get(sampleFile.toUri().toString());
-//        driver3.get(sampleFile.toUri().toString());
-//        driver4.get(sampleFile.toUri().toString());
+        driver3.get(sampleFile.toUri().toString());
+        driver4.get(sampleFile.toUri().toString());
+
+        
     }
 }

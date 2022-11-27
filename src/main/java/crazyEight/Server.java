@@ -62,9 +62,41 @@ public class Server extends WebSocketServer {
     @Override
     public void onMessage(WebSocket conn, String message) {
         System.out.println("Message from client: " + message);
+        String[] msgs = message.split(",");
+        switch (msgs[0]){
+            case "start":
+                gameStart = true;
+//                current_round_starter =
+                current_player_id = Integer.parseInt(msgs[1]);
+                next_player_id = current_player_id%conns.size()+1;
+                broadcast("start,"+current_player_id);
+                dealCard(0);
+                updateDiscard(deck.drawCard().toString());
+                updateStock();
+                broadcast("turn,"+current_player_id+","+next_player_id);
+                break;
+        }
     }
 
-
+    public void dealCard(int id){
+        if(deck.isExausted()){
+            broadcast("empty,");
+            // TODO
+        }
+        if(id==0){
+            for(int i=0;i<5;i++){
+                for(int j=0;j<conns.size();j++){
+                    Card c = (deck.drawCard());
+                    players.get(j).addCard(c);
+                    conns.get(j).send("card,"+c.toString());
+                }
+            }
+        }else{
+            Card c = (deck.drawCard());
+            players.get(id-1).addCard(c);
+            conns.get(id-1).send("card,"+c.toString());
+        }
+    }
     public boolean checkWin(){
         return players.stream().anyMatch(p -> p.getScore()>=100);
     }
