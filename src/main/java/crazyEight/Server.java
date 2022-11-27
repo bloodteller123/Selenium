@@ -128,7 +128,7 @@ public class Server extends WebSocketServer {
         if (conn != null) {
             conns.remove(conn);
         }
-        System.out.println("ERROR from " + conn.getRemoteSocketAddress().getAddress().getHostAddress());
+//        System.out.println("ERROR from " + conn.getRemoteSocketAddress().getAddress().getHostAddress());
     }
 
     public static void main(String[] args) throws InterruptedException, IOException {
@@ -139,5 +139,8 @@ public class Server extends WebSocketServer {
     }
     public void setPlayers(Player p){
         players.add(p);
+    }
+    public int getNextPlayer(){
+        return this.next_player_id;
     }
 }

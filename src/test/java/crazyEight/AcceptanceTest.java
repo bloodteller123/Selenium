@@ -34,9 +34,9 @@ public class AcceptanceTest {
     @BeforeEach
     void setup() {
         driver1 = new ChromeDriver();
-//        driver2 = new ChromeDriver();
-//        driver3 = new ChromeDriver();
-//        driver4 = new ChromeDriver();
+        driver2 = new ChromeDriver();
+        driver3 = new ChromeDriver();
+        driver4 = new ChromeDriver();
 
         js = (JavascriptExecutor) driver1;
         sampleFile = Paths.get(path);
@@ -45,17 +45,17 @@ public class AcceptanceTest {
     }
     @AfterEach
     void teardown() {
-//        driver1.quit();
-//        driver2.quit();
-//        driver3.quit();
-//        driver4.quit();
+        driver1.quit();
+        driver2.quit();
+        driver3.quit();
+        driver4.quit();
     }
     @Test
     void row41() throws InterruptedException {
         driver1.get(sampleFile.toUri().toString());
-//        driver2.get(sampleFile.toUri().toString());
-//        driver3.get(sampleFile.toUri().toString());
-//        driver4.get(sampleFile.toUri().toString());
+        driver2.get(sampleFile.toUri().toString());
+        driver3.get(sampleFile.toUri().toString());
+        driver4.get(sampleFile.toUri().toString());
 
         driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
