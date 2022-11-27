@@ -16,11 +16,22 @@ public class Server extends WebSocketServer {
     private List<Player> players;
     private boolean gameStart;
     private int id=0;
+    private String discardCard;
+    private int current_player_id;
+    private int current_round_starter;
+    private int next_player_id;
+    private int next_round_starter;
+    private boolean reverse;
     public Server(int port) {
         super(new InetSocketAddress(port));
         conns = new ArrayList<>();
         deck = new Deck();
         players = new ArrayList<>();
+        discardCard = "";
+        current_player_id = 1;
+        current_round_starter = 1;
+        next_player_id = 2;
+        next_round_starter = 2;
         // overall scores
     }
 
@@ -37,6 +48,7 @@ public class Server extends WebSocketServer {
             players.add(new Player(++id));
             conns.add(conn);
             System.out.println(conns.size());
+            conn.send("id,"+id+","+current_round_starter+","+conns.size());
             System.out.println("New connection from " + conn.getRemoteSocketAddress().getAddress().getHostAddress());
         }
     }
