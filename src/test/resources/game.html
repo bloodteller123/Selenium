@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Crazy 8 Game</title>
+    <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    </style>
+</head>
+<body>
+<br>
+<div id="welcome"></div>
+<div id="player_indication"></div>
+<div ><button id="startButton" onclick="start()" style="visibility: hidden;">START</button></div>
+<div style="display: flex;">
+    <div id="deck" style="flex: 1;width:500px;height:300px;text-align:center;background-color:green;margin:0 auto;">CARDS</div>
+    <div id="discard" style="flex: 0.5 1 30%;width:500px;height:300px;text-align:center;background-color:yellow;margin:0 auto;">DISCARDS</div>
+</div>
+
+<div id="cards" style="display:grid;grid-template-columns: repeat(10, 1fr);gap: 10px;background-color:orange;margin:0 auto;text-align:center">YOUR CARDS</div>
+<button id="drawButton" style="visibility: hidden;" onclick="draw()">DRAW</button>
+<button id="passButton" style="visibility: hidden;" onclick="pass()">PASS</button>
+<table style="width:500px" id="table">
+
+</table>
+</body>
+</html>
