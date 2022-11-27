@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="49ba2b5f-1fde-4046-886a-6fe3ee2ea557" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crazyEight/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crazyEight/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/crazyEight/AcceptanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/crazyEight/AcceptanceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/game.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +53,7 @@
       <recent name="$PROJECT_DIR$/src/test/java" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AcceptanceTest.row42">
+  <component name="RunManager" selected="JUnit.AcceptanceTest.row45">
     <configuration name="AcceptanceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="crazy8" />
       <extension name="coverage">
@@ -103,7 +101,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerTest.checkWinTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AcceptanceTest.row44" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="crazy8" />
       <extension name="coverage">
         <pattern>
@@ -112,14 +110,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="crazyEight" />
-      <option name="MAIN_CLASS_NAME" value="crazyEight.ServerTest" />
-      <option name="METHOD_NAME" value="checkWinTest" />
+      <option name="MAIN_CLASS_NAME" value="crazyEight.AcceptanceTest" />
+      <option name="METHOD_NAME" value="row44" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerTest.updateScoreTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AcceptanceTest.row45" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="crazy8" />
       <extension name="coverage">
         <pattern>
@@ -128,8 +126,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="crazyEight" />
-      <option name="MAIN_CLASS_NAME" value="crazyEight.ServerTest" />
-      <option name="METHOD_NAME" value="updateScoreTest" />
+      <option name="MAIN_CLASS_NAME" value="crazyEight.AcceptanceTest" />
+      <option name="METHOD_NAME" value="row45" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -137,11 +135,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AcceptanceTest.row45" />
+        <item itemvalue="JUnit.AcceptanceTest.row44" />
         <item itemvalue="JUnit.AcceptanceTest.row42" />
         <item itemvalue="JUnit.AcceptanceTest.row41" />
         <item itemvalue="JUnit.AcceptanceTest" />
-        <item itemvalue="JUnit.ServerTest.updateScoreTest" />
-        <item itemvalue="JUnit.ServerTest.checkWinTest" />
       </list>
     </recent_temporary>
   </component>

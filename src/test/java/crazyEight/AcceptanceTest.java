@@ -116,6 +116,69 @@ public class AcceptanceTest {
         driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
         assertEquals(3, server.getNextPlayer());
     }
+    @Test
+    void row44() throws InterruptedException {
+        driver1.get(sampleFile.toUri().toString());
+        driver2.get(sampleFile.toUri().toString());
+        driver3.get(sampleFile.toUri().toString());
+        driver4.get(sampleFile.toUri().toString());
+
+        driver1.findElement(By.id("startButton")).click();
+        Thread.sleep(1000);
+        js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', 'QC')");
+        js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = 'QC'");
+        js1.executeScript("document.getElementById('discard').innerHTML = '3C'");
+        js1.executeScript("cards[0] = 'QC'");
+
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
+
+        assertEquals(3, server.getNextPlayer());
+    }
+    @Test
+    void row45() throws InterruptedException {
+        driver1.get(sampleFile.toUri().toString());
+        driver2.get(sampleFile.toUri().toString());
+        driver3.get(sampleFile.toUri().toString());
+        driver4.get(sampleFile.toUri().toString());
+
+        driver1.findElement(By.id("startButton")).click();
+        Thread.sleep(1000);
+        js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
+        js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
+        js1.executeScript("document.getElementById('discard').innerHTML = '3S'");
+        js1.executeScript("cards[0] = '3C'");
+
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
+        driver1.findElement(By.id("passButton")).click();
+        Thread.sleep(300);
+
+        js2.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
+        js2.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
+        js2.executeScript("document.getElementById('discard').innerHTML = '3S'");
+        js2.executeScript("cards[0] = '3C'");
+
+        driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
+        driver2.findElement(By.id("passButton")).click();
+        Thread.sleep(300);
+
+        js3.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
+        js3.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
+        js3.executeScript("document.getElementById('discard').innerHTML = '3S'");
+        js3.executeScript("cards[0] = '3C'");
+
+        driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
+        driver3.findElement(By.id("passButton")).click();
+        Thread.sleep(300);
+
+        js4.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
+        js4.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
+        js4.executeScript("document.getElementById('discard').innerHTML = '3S'");
+        js4.executeScript("cards[0] = '3C'");
+
+        driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
+
+        assertEquals(1, server.getNextPlayer());
+    }
     //js4.executeScript("document.getElementById('cards').innerHTML='';cards = [7D, JH, QH, KH, 5C]");
     //js4.executeScript("renderCards()");
 }
