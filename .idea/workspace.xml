@@ -53,22 +53,7 @@
       <recent name="$PROJECT_DIR$/src/test/java" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AcceptanceTest.row45">
-    <configuration name="AcceptanceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="crazy8" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="crazyEight.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="crazyEight" />
-      <option name="MAIN_CLASS_NAME" value="crazyEight.AcceptanceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.AcceptanceTest.row46">
     <configuration name="AcceptanceTest.row41" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="crazy8" />
       <extension name="coverage">
@@ -133,13 +118,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AcceptanceTest.row46" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="crazy8" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="crazyEight.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="crazyEight" />
+      <option name="MAIN_CLASS_NAME" value="crazyEight.AcceptanceTest" />
+      <option name="METHOD_NAME" value="row46" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AcceptanceTest.row46" />
         <item itemvalue="JUnit.AcceptanceTest.row45" />
         <item itemvalue="JUnit.AcceptanceTest.row44" />
         <item itemvalue="JUnit.AcceptanceTest.row42" />
         <item itemvalue="JUnit.AcceptanceTest.row41" />
-        <item itemvalue="JUnit.AcceptanceTest" />
       </list>
     </recent_temporary>
   </component>
