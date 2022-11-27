@@ -75,7 +75,26 @@ public class Server extends WebSocketServer {
                 updateStock();
                 broadcast("turn,"+current_player_id+","+next_player_id);
                 break;
+            case "discard":
+                removeCards(msgs[1], Integer.parseInt(msgs[2]));
+                updateDiscard(msgs[1]);
+                break;
         }
+    }
+    public void removeCards(String discard, int id){
+        this.discardCard = discard;
+        if(id!=-1)players.get(id-1).removeCard(discard);
+    }
+    public void updateDiscard(String discard){
+        // update discard card
+        this.discardCard = discard;
+//        if(id!=-1)players.get(id-1).removeCard(discard);
+        for (WebSocket sock : conns) {
+            sock.send("discard,"+this.discardCard);
+        }
+    }
+    public void updateStock(){
+        broadcast("stock,"+(this.deck.getCardsSize() - this.deck.getInd()));
     }
     public void dealCard(int id){
         if(deck.isExausted()){
