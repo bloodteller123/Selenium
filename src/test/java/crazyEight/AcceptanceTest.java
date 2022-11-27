@@ -4,16 +4,17 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.JavascriptExecutor;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,14 +39,14 @@ public class AcceptanceTest {
     @BeforeEach
     void setup() {
         driver1 = new ChromeDriver();
-        driver2 = new ChromeDriver();
-        driver3 = new ChromeDriver();
-        driver4 = new ChromeDriver();
+//        driver2 = new ChromeDriver();
+//        driver3 = new ChromeDriver();
+//        driver4 = new ChromeDriver();
 
         js1 = (JavascriptExecutor) driver1;
-        js2 = (JavascriptExecutor) driver2;
-        js3 = (JavascriptExecutor) driver3;
-        js4 = (JavascriptExecutor) driver4;
+//        js2 = (JavascriptExecutor) driver2;
+//        js3 = (JavascriptExecutor) driver3;
+//        js4 = (JavascriptExecutor) driver4;
         sampleFile = Paths.get(path);
         server = new Server(8800);
         server.start();
@@ -53,9 +54,9 @@ public class AcceptanceTest {
     @AfterEach
     void teardown() {
         driver1.quit();
-        driver2.quit();
-        driver3.quit();
-        driver4.quit();
+//        driver2.quit();
+//        driver3.quit();
+//        driver4.quit();
     }
     @Test
     void row41() throws InterruptedException {
@@ -280,6 +281,62 @@ public class AcceptanceTest {
 
         driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
         assertEquals(2, server.getNextPlayer());
+    }
+    @Test
+    void row51() throws InterruptedException {
+        driver1.get(sampleFile.toUri().toString());
+        driver2.get(sampleFile.toUri().toString());
+        driver3.get(sampleFile.toUri().toString());
+        driver4.get(sampleFile.toUri().toString());
+
+        driver1.findElement(By.id("startButton")).click();
+        Thread.sleep(1000);
+        js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', 'KH')");
+        js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = 'KH'");
+        js1.executeScript("document.getElementById('discard').innerHTML = 'KC'");
+        js1.executeScript("cards[0] = 'KH'");
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
+        String val1 = driver1.findElement(By.id("discard")).getText();
+        assertEquals("KH", val1);
+    }
+    @Test
+    void row52() throws InterruptedException {
+        driver1.get(sampleFile.toUri().toString());
+        driver2.get(sampleFile.toUri().toString());
+        driver3.get(sampleFile.toUri().toString());
+        driver4.get(sampleFile.toUri().toString());
+
+        driver1.findElement(By.id("startButton")).click();
+        Thread.sleep(1000);
+        js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '7C')");
+        js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '7C'");
+        js1.executeScript("document.getElementById('discard').innerHTML = 'KC'");
+        js1.executeScript("cards[0] = '7C'");
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
+        String val1 = driver1.findElement(By.id("discard")).getText();
+        assertEquals("7C", val1);
+    }
+    @Test
+    void row53() throws InterruptedException {
+        driver1.get(sampleFile.toUri().toString());
+//        driver2.get(sampleFile.toUri().toString());
+//        driver3.get(sampleFile.toUri().toString());
+//        driver4.get(sampleFile.toUri().toString());
+
+        driver1.findElement(By.id("startButton")).click();
+        Thread.sleep(1000);
+        js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '8H')");
+        js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '8H'");
+        js1.executeScript("document.getElementById('discard').innerHTML = 'KC'");
+        js1.executeScript("cards[0] = '8H'");
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver1)
+                .withTimeout(Duration.ofSeconds(5))
+                .pollingEvery(Duration.ofSeconds(1))
+                .ignoring(NoSuchElementException.class);
+
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        assertNotNull(alert);
     }
     //js4.executeScript("document.getElementById('cards').innerHTML='';cards = [7D, JH, QH, KH, 5C]");
     //js4.executeScript("renderCards()");
