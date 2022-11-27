@@ -59,9 +59,10 @@ public class AcceptanceTest {
 
         driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
-        js.executeScript("console.log(document.getElementById('cards').firstElementChild)");
         js.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
-        js.executeScript("document.getElementById('discard').innerHTML = '3C'");
+        js.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
+        js.executeScript("document.getElementById('discard').innerHTML = '3S'");
+        js.executeScript("cards[0] = '3C'");
 
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
 
