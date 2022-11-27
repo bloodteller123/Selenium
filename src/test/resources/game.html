@@ -26,5 +26,144 @@
 <table style="width:500px" id="table">
 
 </table>
+<script type="text/javascript">
+        var webSocket = new WebSocket("ws://localhost:8800");
+        let welcomeMsg = document.getElementById("welcome");
+        var startButton = document.getElementById("startButton");
+        let discardPile = document.getElementById("discard");
+        let deck = document.getElementById("deck");
+        let drawButton = document.getElementById("drawButton");
+        let passButton = document.getElementById("passButton");
+        let player_indication = document.getElementById("player_indication");
+        let table = document.getElementById("table");
+        let player_id = -1;
+        let counter = 0;
+        let current_round_starter = -1;
+        let current_player = -1;
+        document.getElementById('cards').style.pointerEvents = "none";
+
+        webSocket.onopen = function(event){ wsOpen(event);};
+        webSocket.onmessage = function(event){ wsGetMessage(event);};
+        webSocket.onclose = function(event){ wsClose(event);};
+        webSocket.onerror = function(event){ wsError(event);};
+        let cards = [];
+        // addCard("xa");
+        function wsOpen(message){
+            // echoText.value += "Connected ... \n";
+        }
+
+        function addCard(card){
+            cards.push(card);
+            renderCards();
+        }
+
+        function renderCards(){
+            document.getElementById('cards').innerHTML = cards.map(c =>
+                `
+                <div id="${c}" onclick="selectCard(this)" style="width:50px;height:30px;border: 1rem solid;margin: 0 auto">${c}</div>
+                `
+            ).join('')
+        }
+
+        function checkSelection(selection, suit, discard){
+            if(selection == "8") return true;
+            if(selection != discard.slice(0, -1) && suit != discard.slice(-1)) return false;
+            return true;
+        }
+
+        function selectCard(ele){
+            console.log("Inside selectCard");
+            console.log(ele);
+            console.log(checkSelection(ele.id.slice(0, -1), ele.id.slice(-1), discardPile.innerHTML));
+            if(checkSelection(ele.id.slice(0, -1), ele.id.slice(-1), discardPile.innerHTML)){
+                wsSendMessage("discard,"+ele.id+","+player_id);
+                removeCard(ele.id);
+                let element = ele;
+                passButton.style.visibility = "visible";
+                if(ele.id.includes("Q") || ele.id.includes("1" || ele.id.includes("2"))){
+                    wsSendMessage("special,"+ele.id[0])
+                }
+                element.remove();
+            }
+            // player X has played all the cards
+            if(cards.length==0){
+                end();
+            }
+        }
+
+        function removeCard(card){
+            // console.log(cards);
+            // console.log(card);
+            cards = cards.filter(c => {
+                console.log(c);
+                return c !== card
+            })
+            renderCards();
+        }
+        function wsSendMessage(message){
+            webSocket.send(message);
+        }
+        function wsCloseConnection(){
+            webSocket.close();
+        }
+        function wsGetMessage(event){
+            // counter = 0;
+            let arr = event.data.split(",");
+            console.log(arr);
+            if(arr[0]=='id'){
+                player_id = arr[1];
+                welcomeMsg.innerHTML = "Player"+arr[1]+" joined the game";
+                current_round_starter = arr[2];
+                if(player_id==current_round_starter) startButton.style.visibility = "visible";
+                // else welcomeMsg.innerHTML += "<br />"+" Wait for Player1 to start the game";
+            }else if(arr[0]=="start"){
+                // welcomeMsg.innerHTML = "Player"+player_id+" joined the game\n";
+                drawButton.style.visibility = "visible";
+                // passButton.style.visibility = "visible";
+            }else if(arr[0]=="card"){
+                addCard(arr[1]);
+            }else if(arr[0]=="discard"){
+                discardPile.innerHTML = arr[1];
+            }else if(arr[0]=="winner"){
+                console.log(arr[1]);
+            }else if(arr[0]=="empty"){
+                passButton.style.visibility = "visible";
+                drawButton.style.visibility = "hidden";
+                deck.innerHTML = "EMPTY DECK";
+            }else if(arr[0]=="stock"){
+                deck.innerHTML = arr[1];
+            }else if(arr[0]=='turn'){
+                drawButton.style.visibility = "visible";
+                current_player = arr[1];
+                player_indication.innerHTML = "Current player is player" +current_player+" Next player will be player" + arr[2];
+                if(current_player != player_id){
+                    console.log('none');
+                    document.getElementById('cards').style.pointerEvents = "none";
+                    drawButton.style.visibility = "hidden";
+
+                }else{
+                    drawButton.style.visibility = "visible";
+                    counter = 0;
+                    console.log('auto');
+                    document.getElementById('cards').style.pointerEvents = "auto";
+                }
+            }
+        }
+        function wsClose(event){
+            // echoText.value += "Disconnect ... \n";
+        }
+
+        function wserror(event){
+            // echoText.value += "Error ... \n";
+        }
+        function start(){
+            wsSendMessage("start,"+player_id);
+            startButton.innerText = "STARTED";
+            startButton.disabled="true";
+        }
+        function end(){
+            wsSendMessage("end,"+player_id);
+        }
+    </script>
 </body>
 </html>

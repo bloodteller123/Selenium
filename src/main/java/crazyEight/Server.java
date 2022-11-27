@@ -77,7 +77,6 @@ public class Server extends WebSocketServer {
                 break;
         }
     }
-
     public void dealCard(int id){
         if(deck.isExausted()){
             broadcast("empty,");
