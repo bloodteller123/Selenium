@@ -79,6 +79,28 @@ public class Server extends WebSocketServer {
                 removeCards(msgs[1], Integer.parseInt(msgs[2]));
                 updateDiscard(msgs[1]);
                 break;
+            case "special":
+                if(msgs[1].equals("Q")){
+                    System.out.println(reverse);
+                    if(reverse)  next_player_id = next_player_id==1? conns.size() : next_player_id-1;
+                    else  next_player_id = next_player_id==conns.size()? 1 : next_player_id+1;
+                    broadcast("updateN,"+next_player_id+","+(reverse?"right":"left"));
+                }else if(msgs[1].equals("1")){
+                    reverse = !reverse;
+                    if(reverse) next_player_id = current_player_id==1?conns.size() : current_player_id-1;
+                    else  next_player_id = current_player_id==conns.size()? 1 : current_player_id+1;
+                    broadcast("updateN,"+next_player_id+","+(reverse?"right":"left"));
+                }else{
+
+                }
+                break;
+            case "pass":
+                current_player_id = next_player_id;
+                System.out.println(reverse);
+                if(reverse)  next_player_id = next_player_id==1? conns.size() : next_player_id-1;
+                else  next_player_id = next_player_id==conns.size()? 1 : next_player_id+1;
+                broadcast("turn,"+current_player_id+","+next_player_id+","+(reverse?"right":"left"));
+                break;
         }
     }
     public void removeCards(String discard, int id){

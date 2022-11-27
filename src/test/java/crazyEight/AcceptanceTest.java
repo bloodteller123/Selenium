@@ -52,10 +52,10 @@ public class AcceptanceTest {
     }
     @AfterEach
     void teardown() {
-        driver1.quit();
-        driver2.quit();
-        driver3.quit();
-        driver4.quit();
+//        driver1.quit();
+//        driver2.quit();
+//        driver3.quit();
+//        driver4.quit();
     }
     @Test
     void row41() throws InterruptedException {
@@ -107,12 +107,15 @@ public class AcceptanceTest {
         assertTrue(val3.contains("right"));
         String val4 = indication4.getText();
         assertTrue(val4.contains("right"));
-
+        driver1.findElement(By.id("passButton")).click();
+        Thread.sleep(300);
         js4.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '7H')");
         js4.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '7H'");
         js4.executeScript("cards[0] = '7H'");
-
+        Thread.sleep(300);
         driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
         assertEquals(3, server.getNextPlayer());
     }
+    //js4.executeScript("document.getElementById('cards').innerHTML='';cards = [7D, JH, QH, KH, 5C]");
+    //js4.executeScript("renderCards()");
 }

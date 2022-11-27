@@ -135,7 +135,7 @@
             }else if(arr[0]=='turn'){
                 drawButton.style.visibility = "visible";
                 current_player = arr[1];
-                player_indication.innerHTML = "Current player is player" +current_player+" Next player will be player" + arr[2];
+                player_indication.innerHTML = "Current player is player" +current_player+" Next player will be player" + arr[2]+"Direction: "+arr[3];
                 if(current_player != player_id){
                     console.log('none');
                     document.getElementById('cards').style.pointerEvents = "none";
@@ -147,6 +147,8 @@
                     console.log('auto');
                     document.getElementById('cards').style.pointerEvents = "auto";
                 }
+            }else if(arr[0]=="updateN"){
+                player_indication.innerHTML = "Current player is player" +current_player+" Next player will be player" + arr[1]+" Direction: "+arr[2];
             }
         }
         function wsClose(event){
@@ -163,6 +165,11 @@
         }
         function end(){
             wsSendMessage("end,"+player_id);
+        }
+        function pass(){
+            drawButton.style.visibility = "hidden";
+            passButton.style.visibility = "hidden";
+            wsSendMessage("pass,"+player_id);
         }
     </script>
 </body>
