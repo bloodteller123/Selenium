@@ -91,6 +91,7 @@ public class Server extends WebSocketServer {
                     else  next_player_id = current_player_id==conns.size()? 1 : current_player_id+1;
                     broadcast("updateN,"+next_player_id+","+(reverse?"right":"left"));
                 }else{
+                    System.out.println("next_player_id: "+next_player_id);
                     conns.get(next_player_id-1).send("two,"+2);
                 }
                 break;
