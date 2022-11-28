@@ -32,9 +32,9 @@ public class Server extends WebSocketServer {
         current_round_starter = 1;
         next_player_id = 2;
         next_round_starter = 2;
+        gameStart = false;
         // overall scores
     }
-
     @Override
     public void onStart() {
         System.out.println("Server started!");
@@ -76,7 +76,7 @@ public class Server extends WebSocketServer {
                 broadcast("turn,"+current_player_id+","+next_player_id);
                 break;
             case "discard":
-                removeCards(msgs[1], Integer.parseInt(msgs[2]));
+                removeCards(msgs[1], Integer.parseInt(msgs[2]), msgs[3]);
                 updateDiscard(msgs[1]);
                 break;
             case "special":
@@ -103,9 +103,12 @@ public class Server extends WebSocketServer {
                 break;
         }
     }
-    public void removeCards(String discard, int id){
+    public void removeCards(String discard, int id, String old_c){
         this.discardCard = discard;
-        if(id!=-1)players.get(id-1).removeCard(discard);
+        if(id!=-1){
+            String s = discard.equals(old_c)? discard : old_c;
+            players.get(id-1).removeCard(s);
+        }
     }
     public void updateDiscard(String discard){
         // update discard card

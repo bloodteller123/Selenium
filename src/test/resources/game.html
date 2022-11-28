@@ -76,7 +76,12 @@
             console.log(ele);
             console.log(checkSelection(ele.id.slice(0, -1), ele.id.slice(-1), discardPile.innerHTML));
             if(checkSelection(ele.id.slice(0, -1), ele.id.slice(-1), discardPile.innerHTML)){
-                wsSendMessage("discard,"+ele.id+","+player_id);
+                let cc = ele.id;
+                if(cc.slice(0,-1)=='8'){
+                    let suit_p = prompt("Enter suit (S,C,H,D): ", "S");
+                    if(suit_p!=null) cc = '8'+suit_p;
+                }
+                wsSendMessage("discard,"+cc+","+player_id+","+ele.id);
                 removeCard(ele.id);
                 let element = ele;
                 passButton.style.visibility = "visible";
@@ -153,7 +158,12 @@
         }
         function wsClose(event){
             // echoText.value += "Disconnect ... \n";
+            console.log(event);
         }
+        window.addEventListener("unload", function () {
+            if(webSocket.readyState == WebSocket.OPEN)
+                webSocket.close();
+            });
 
         function wserror(event){
             // echoText.value += "Error ... \n";

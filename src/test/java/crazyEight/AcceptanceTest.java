@@ -24,39 +24,48 @@ public class AcceptanceTest {
     WebDriver driver3;
     WebDriver driver4;
     String path = "/Users/god/intellij-workspace/crazy8/src/test/resources/game.html";
+    String path2 = "/Users/god/intellij-workspace/crazy8/src/test/resources/game2.html";
     Path sampleFile;
     Server server;
     JavascriptExecutor js1;
     JavascriptExecutor js2;
     JavascriptExecutor js3;
     JavascriptExecutor js4;
-
+    static int i;
 
     @BeforeAll
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
+        i= 0;
+//        server = new Server(8800);
+//        server.start();
     }
     @BeforeEach
-    void setup() {
+    void setup() throws InterruptedException {
         driver1 = new ChromeDriver();
-//        driver2 = new ChromeDriver();
-//        driver3 = new ChromeDriver();
-//        driver4 = new ChromeDriver();
+        driver2 = new ChromeDriver();
+        driver3 = new ChromeDriver();
+        driver4 = new ChromeDriver();
 
         js1 = (JavascriptExecutor) driver1;
-//        js2 = (JavascriptExecutor) driver2;
-//        js3 = (JavascriptExecutor) driver3;
-//        js4 = (JavascriptExecutor) driver4;
-        sampleFile = Paths.get(path);
-        server = new Server(8800);
+        js2 = (JavascriptExecutor) driver2;
+        js3 = (JavascriptExecutor) driver3;
+        js4 = (JavascriptExecutor) driver4;
+        if (i==0) sampleFile = Paths.get(path);
+        else sampleFile = Paths.get(path2);
+        if(i==0)server = new Server(8800);
+        else server = new Server(8802);
         server.start();
+        System.out.println(i);
+        i = i=1;
     }
     @AfterEach
     void teardown() {
         driver1.quit();
-//        driver2.quit();
-//        driver3.quit();
-//        driver4.quit();
+        driver2.quit();
+        driver3.quit();
+        driver4.quit();
+        server.reset();
     }
     @Test
     void row41() throws InterruptedException {
@@ -78,13 +87,14 @@ public class AcceptanceTest {
     }
     @Test
     void row42() throws InterruptedException {
+        Thread.sleep(5000);
         driver1.get(sampleFile.toUri().toString());
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-
-        driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
+        driver1.findElement(By.id("startButton")).click();
+
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '1H')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '1H'");
         js1.executeScript("document.getElementById('discard').innerHTML = '4H'");
@@ -123,9 +133,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-
-        driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
+        driver1.findElement(By.id("startButton")).click();
+//        Thread.sleep(1000);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', 'QC')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = 'QC'");
         js1.executeScript("document.getElementById('discard').innerHTML = '3C'");
@@ -141,9 +151,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-
-        driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
+        driver1.findElement(By.id("startButton")).click();
+//        Thread.sleep(1000);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
         js1.executeScript("document.getElementById('discard').innerHTML = '3S'");
@@ -186,9 +196,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-
-        driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
+        driver1.findElement(By.id("startButton")).click();
+//        Thread.sleep(1000);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
         js1.executeScript("document.getElementById('discard').innerHTML = '3S'");
@@ -244,9 +254,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-
-        driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
+        driver1.findElement(By.id("startButton")).click();
+//        Thread.sleep(1000);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
         js1.executeScript("document.getElementById('discard').innerHTML = '3S'");
@@ -288,9 +298,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-
-        driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
+        driver1.findElement(By.id("startButton")).click();
+//        Thread.sleep(1000);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', 'KH')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = 'KH'");
         js1.executeScript("document.getElementById('discard').innerHTML = 'KC'");
@@ -305,9 +315,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-
-        driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
+        driver1.findElement(By.id("startButton")).click();
+//        Thread.sleep(1000);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '7C')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '7C'");
         js1.executeScript("document.getElementById('discard').innerHTML = 'KC'");
@@ -322,9 +332,9 @@ public class AcceptanceTest {
 //        driver2.get(sampleFile.toUri().toString());
 //        driver3.get(sampleFile.toUri().toString());
 //        driver4.get(sampleFile.toUri().toString());
-
-        driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
+        driver1.findElement(By.id("startButton")).click();
+//        Thread.sleep(1000);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '8H')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '8H'");
         js1.executeScript("document.getElementById('discard').innerHTML = 'KC'");
