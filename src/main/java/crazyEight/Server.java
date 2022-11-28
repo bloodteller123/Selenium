@@ -107,7 +107,9 @@ public class Server extends WebSocketServer {
                 updateStock();
                 break;
             case "end":
+                System.out.println(333);
                 updateScore();
+                System.out.println(444);
                 sendScore();
                 if(checkWin())
                     sendWinner();
@@ -123,7 +125,7 @@ public class Server extends WebSocketServer {
         }
     }
     public void updateCards(String cards_str, int playerId){
-        String[] cards_arr = cards_str.split(".");
+        String[] cards_arr = cards_str.split("\\.");
         Card[] cards = new Card[cards_arr.length];
         for(int i=0; i< cards_arr.length;i++){
             String t = cards_arr[i];
@@ -133,7 +135,6 @@ public class Server extends WebSocketServer {
             cards[i] = new Card(rank, suit);
         }
         players.get(playerId-1).setCards(cards);
-        System.out.println(Arrays.toString(cards));
     }
     public void sendWinner(){
         Collections.sort(players, (p1, p2) -> p1.getScore() - p2.getScore());
@@ -146,7 +147,8 @@ public class Server extends WebSocketServer {
         // send score
         System.out.println(conns.size());
         String score = "";
-        for(Player p: players) score+= p.getScore()+",";
+        for(Player p: players) score+= p.getScore()+".";
+        System.out.println("score: "+score);
 //        broadcast("score,"+score);
         for(WebSocket wb : conns){
             wb.send("score,"+score);

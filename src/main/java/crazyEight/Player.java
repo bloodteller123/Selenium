@@ -32,9 +32,9 @@ public class Player {
     public int calculateScore(){
         int totalScore = 0;
         for(Card card : this.cards){
-            if(card.getRank()=="8"){
+            if(card.getRank().equals("8")){
                 totalScore+=50;
-            }else if(card.getRank()=="J" || card.getRank()=="Q" || card.getRank()=="K"){
+            }else if(card.getRank().equals("J") || card.getRank().equals("Q") || card.getRank().equals("K")){
                 totalScore+=10;
             }else{
                 totalScore+=Integer.parseInt(card.getRank());

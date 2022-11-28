@@ -12,6 +12,7 @@
 </head>
 <body>
 <br>
+<div id="player_id"></div>
 <div id="welcome"></div>
 <div id="player_indication"></div>
 <div ><button id="startButton" onclick="start()" style="visibility: hidden;">START</button></div>
@@ -28,6 +29,7 @@
 </table>
 <script type="text/javascript">
         var webSocket = new WebSocket("ws://localhost:8800");
+        let player_id_bar = document.getElementById("player_id");
         let welcomeMsg = document.getElementById("welcome");
         var startButton = document.getElementById("startButton");
         let discardPile = document.getElementById("discard");
@@ -123,6 +125,7 @@
             let arr = event.data.split(",");
             console.log(arr);
             if(arr[0]=='id'){
+                player_id_bar.innerHTML = "Player "+arr[1];
                 player_id = arr[1];
                 welcomeMsg.innerHTML = "Player"+arr[1]+" joined the game";
                 current_round_starter = arr[2];
@@ -147,7 +150,7 @@
             }else if(arr[0]=='turn'){
                 drawButton.style.visibility = "visible";
                 current_player = arr[1];
-                player_indication.innerHTML = "Current player is player" +current_player+" Next player will be player" + arr[2]+"Direction: "+arr[3];
+                player_indication.innerHTML = "Current player is player" +current_player+" Next player will be player" + arr[2]+" Direction: "+arr[3];
                 if(current_player != player_id){
                     console.log('none');
                     document.getElementById('cards').style.pointerEvents = "none";
@@ -180,9 +183,8 @@
                         }
                     }
                 }
-                
             }else if(arr[0]=="updateN"){
-                player_indication.innerHTML = "Current player is player" +current_player+" Next player will be player" + arr[1]+" Direction: "+arr[2];
+                player_indication.innerHTML = "Current player is player" +current_player+" Next player will be player " + arr[1]+" Direction: "+arr[2];
             }else if(arr[0]=="two"){
                 console.log("received two");
                 two_counts = arr[1];
@@ -198,6 +200,9 @@
                     startButton.disabled="false";
                     passButton.style.visibility = "hidden";
                 }
+            }else if(arr[0]=="score"){
+                console.log("score: ", arr[1]);
+
             }
         }
         function wsClose(event){
@@ -246,6 +251,7 @@
         }
         function updateCards(){
             let cards_string = cards.join(".");
+            console.log(cards_string);
             wsSendMessage("updateCards,"+cards_string+","+player_id);
         }
     </script>
