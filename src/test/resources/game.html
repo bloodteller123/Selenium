@@ -48,8 +48,9 @@
         webSocket.onerror = function(event){ wsError(event);};
         let cards = [];
         // addCard("xa");
-        function wsOpen(message){
+        function wsOpen(event){
             // echoText.value += "Connected ... \n";
+            console.log(event)
         }
 
         function addCard(card){
@@ -89,6 +90,8 @@
                     wsSendMessage("special,"+ele.id[0])
                 }
                 element.remove();
+            }else{
+                alert("Invalid selection");
             }
             // player X has played all the cards
             if(cards.length==0){
