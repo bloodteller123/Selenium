@@ -42,7 +42,7 @@ public class AcceptanceTest {
     void setup() throws InterruptedException {
         Thread.sleep(1000);
         driver1 = new ChromeDriver();
-//        driver2 = new ChromeDriver();
+        driver2 = new ChromeDriver();
 //        driver3 = new ChromeDriver();
 //        driver4 = new ChromeDriver();
 
@@ -647,6 +647,46 @@ public class AcceptanceTest {
 
         Thread.sleep(500);
         WebElement discard = driver1.findElement(By.id("discard"));
+        assertEquals("6C", discard.getText());
+    }
+    @Test
+    void row67() throws InterruptedException {
+        driver1.get(sampleFile.toUri().toString());
+        driver2.get(sampleFile.toUri().toString());
+//        driver3.get(sampleFile.toUri().toString());
+//        driver4.get(sampleFile.toUri().toString());
+        Thread.sleep(1000);
+        driver1.findElement(By.id("startButton")).click();
+        Thread.sleep(1000);
+
+        js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
+        js1.executeScript("cards =['2C','4D']");
+        js1.executeScript("renderCards()");
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        Thread.sleep(500);
+        WebElement discard = driver1.findElement(By.id("discard"));
+        assertEquals("2C", discard.getText());
+        Thread.sleep(500);
+
+        js2.executeScript("cards =['4H']");
+        js2.executeScript("renderCards()");
+
+        WebElement drawB = driver2.findElement(By.id("drawButton"));
+        WebElement passB = driver2.findElement(By.id("passButton"));
+
+        assertEquals("hidden", passB.getCssValue("visibility"));
+        assertEquals("visible", drawB.getCssValue("visibility"));
+        drawB.click();
+        Thread.sleep(1000);
+
+        js2.executeScript("document.getElementById('discard').innerHTML = '7C'");
+        js2.executeScript("cards = ['KS','3C','6C']");
+        js2.executeScript("renderCards()");
+
+        driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(3)")).click();
+
+        Thread.sleep(500);
+        discard = driver2.findElement(By.id("discard"));
         assertEquals("6C", discard.getText());
     }
     //js4.executeScript("document.getElementById('cards').innerHTML='';cards = [7D, JH, QH, KH, 5C]");
