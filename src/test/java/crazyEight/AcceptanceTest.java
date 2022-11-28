@@ -928,7 +928,10 @@ public class AcceptanceTest {
         Thread.sleep(300);
 
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
-        Thread.sleep(5000);
+        Thread.sleep(300);
+        WebElement table = driver2.findElement(By.id("table"));
+        String val1 = table.getText();
+        assertTrue(val1.contains("1.0.86.102."));
     }
     //js4.executeScript("document.getElementById('cards').innerHTML='';cards = [7D, JH, QH, KH, 5C]");
     //js4.executeScript("renderCards()");

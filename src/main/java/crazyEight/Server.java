@@ -107,10 +107,8 @@ public class Server extends WebSocketServer {
                 updateStock();
                 break;
             case "end":
-                System.out.println(333);
-                updateScore();
-                System.out.println(444);
                 sendScore();
+                updateScore();
                 if(checkWin())
                     sendWinner();
                 else{
@@ -147,7 +145,7 @@ public class Server extends WebSocketServer {
         // send score
         System.out.println(conns.size());
         String score = "";
-        for(Player p: players) score+= p.getScore()+".";
+        for(Player p: players) score+= p.calculateScore()+".";
         System.out.println("score: "+score);
 //        broadcast("score,"+score);
         for(WebSocket wb : conns){

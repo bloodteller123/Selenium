@@ -24,9 +24,10 @@
 <div id="cards" style="display:grid;grid-template-columns: repeat(10, 1fr);gap: 10px;background-color:orange;margin:0 auto;text-align:center">YOUR CARDS</div>
 <button id="drawButton" style="visibility: hidden;" onclick="draw()">DRAW</button>
 <button id="passButton" style="visibility: hidden;" onclick="pass()">PASS</button>
-<table style="width:500px" id="table">
+<!-- <table style="width:500px" id="table">
 
-</table>
+</table> -->
+<div id="table"></div>
 <script type="text/javascript">
         var webSocket = new WebSocket("ws://localhost:8800");
         let player_id_bar = document.getElementById("player_id");
