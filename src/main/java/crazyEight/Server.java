@@ -109,6 +109,8 @@ public class Server extends WebSocketServer {
             case "end":
                 sendScore();
                 updateScore();
+                discardCard = "";
+                reverse = false;
                 if(checkWin())
                     sendWinner();
                 else{
@@ -137,6 +139,7 @@ public class Server extends WebSocketServer {
     public void sendWinner(){
         Collections.sort(players, (p1, p2) -> p1.getScore() - p2.getScore());
         String sent = "Winner is "+players.get(0).getId();
+        System.out.println(sent);
         for(WebSocket ws : conns){
             ws.send("winner,"+sent);
         }
@@ -216,5 +219,8 @@ public class Server extends WebSocketServer {
     }
     public int getNextPlayer(){
         return this.next_player_id;
+    }
+    public int getCurrentRoundStarter(){
+        return this.current_round_starter;
     }
 }

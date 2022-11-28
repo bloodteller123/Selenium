@@ -613,7 +613,7 @@ public class AcceptanceTest {
         assertNotNull(alert);
         alert.sendKeys("C");
         alert.accept();
-        Thread.sleep(500);
+        Thread.sleep(300);
         WebElement discard = driver1.findElement(By.id("discard"));
         assertEquals("8C", discard.getText());
     }
@@ -933,6 +933,298 @@ public class AcceptanceTest {
         String val1 = table.getText();
         assertTrue(val1.contains("1.0.86.102."));
     }
-    //js4.executeScript("document.getElementById('cards').innerHTML='';cards = [7D, JH, QH, KH, 5C]");
-    //js4.executeScript("renderCards()");
+    @Test
+    void row81() throws InterruptedException {
+        driver1.get(sampleFile.toUri().toString());
+        driver2.get(sampleFile.toUri().toString());
+        driver3.get(sampleFile.toUri().toString());
+        driver4.get(sampleFile.toUri().toString());
+        Thread.sleep(500);
+        driver1.findElement(By.id("startButton")).click();
+        Thread.sleep(1000);
+
+        js1.executeScript("document.getElementById('discard').innerHTML = '4D'");
+
+        js1.executeScript("cards =['4H', '7S', '5D', '6D', '9D']");
+        js1.executeScript("renderCards()");
+        js1.executeScript("updateCards()");
+        Thread.sleep(100);
+        js2.executeScript("cards =['4S', '6S', 'KC', '8H', '10D']");
+        js2.executeScript("renderCards()");
+        js2.executeScript("updateCards()");
+        Thread.sleep(100);
+        js3.executeScript("cards =['9S', '6C', '9C', 'JD', '3H']");
+        js3.executeScript("renderCards()");
+        js3.executeScript("updateCards()");
+        Thread.sleep(100);
+        js4.executeScript("cards =['7D', 'JH', 'QH', 'KH', '5C']");
+        js4.executeScript("renderCards()");
+        js4.executeScript("updateCards()");
+
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver1.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver2.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver3.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        assertEquals("hidden", driver4.findElement(By.id("passButton")).getCssValue("visibility"));
+        driver4.findElement(By.id("drawButton")).click();
+        js4.executeScript("cards = ['7D', 'JH', 'QH', 'KH', '5C','2C']");
+        js4.executeScript("renderCards()");
+        js4.executeScript("updateCards()");
+        assertEquals("hidden", driver4.findElement(By.id("passButton")).getCssValue("visibility"));
+        driver4.findElement(By.id("drawButton")).click();
+        js4.executeScript("cards = ['7D', 'JH', 'QH', 'KH', '5C','2C','3C']");
+        js4.executeScript("renderCards()");
+        js4.executeScript("updateCards()");
+        assertEquals("hidden", driver4.findElement(By.id("passButton")).getCssValue("visibility"));
+        driver4.findElement(By.id("drawButton")).click();
+        js4.executeScript("cards = ['7D', 'JH', 'QH', 'KH', '5C','2C','3C','4C']");
+        js4.executeScript("renderCards()");
+        js4.executeScript("updateCards()");
+        assertEquals("visible", driver4.findElement(By.id("passButton")).getCssValue("visibility"));
+        driver4.findElement(By.id("passButton")).click();
+
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver1.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver2.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver3.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(6)")).click();
+        driver4.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver1.findElement(By.id("drawButton")).click();
+        driver1.findElement(By.id("drawButton")).click();
+
+        js1.executeScript("cards =['5D', '6D', '9D','10C','JC']");
+        js1.executeScript("renderCards()");
+        js1.executeScript("updateCards()");
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(5)")).click();
+        driver1.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver2.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver3.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(6)")).click();
+        driver4.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver1.findElement(By.id("drawButton")).click();
+
+        js1.executeScript("cards =['5D', '6D', '9D','10C','7C']");
+        js1.executeScript("renderCards()");
+        js1.executeScript("updateCards()");
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(5)")).click();
+        driver1.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        Thread.sleep(100);
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver2)
+                .withTimeout(Duration.ofSeconds(5))
+                .pollingEvery(Duration.ofSeconds(1))
+                .ignoring(NoSuchElementException.class);
+
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        assertNotNull(alert);
+        alert.sendKeys("D");
+        alert.accept();
+        Thread.sleep(200);
+        assertEquals("8D", driver2.findElement(By.id("discard")).getText());
+        driver2.findElement(By.id("passButton")).click();
+
+        driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver3.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver4.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(3)")).click();
+        driver1.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        Thread.sleep(200);
+
+        WebElement table = driver2.findElement(By.id("table"));
+        String val1 = table.getText();
+        assertTrue(val1.contains("21.0.3.39."));
+
+        assertEquals(2, server.getCurrentRoundStarter());
+        Thread.sleep(200);
+        js2.executeScript("document.getElementById('discard').innerHTML = '4D'");
+
+        js2.executeScript("cards =['9D', '3S', '9C', '3H', 'JC']");
+        js2.executeScript("renderCards()");
+        js2.executeScript("updateCards()");
+        Thread.sleep(100);
+        js3.executeScript("cards =['3D', '9S', '3C', '9H', '5H']");
+        js3.executeScript("renderCards()");
+        js3.executeScript("updateCards()");
+        Thread.sleep(100);
+        js4.executeScript("cards =['4D', '7S', '4C', '5S', '8D']");
+        js4.executeScript("renderCards()");
+        js4.executeScript("updateCards()");
+        Thread.sleep(100);
+        js1.executeScript("cards =['7D', '4S', '7C', '4H', '5D']");
+        js1.executeScript("renderCards()");
+        js1.executeScript("updateCards()");
+
+        driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver2.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver3.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver4.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(2)")).click();
+        driver1.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver2.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver3.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver4.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(2)")).click();
+        driver1.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver2.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver3.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver4.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(2)")).click();
+        driver1.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver2.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        driver3.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver4.findElement(By.id("drawButton")).click();
+
+        js4.executeScript("cards =['5S', '8D','KS']");
+        js4.executeScript("renderCards()");
+        js4.executeScript("updateCards()");
+
+        driver4.findElement(By.id("drawButton")).click();
+
+        js4.executeScript("cards =['5S', '8D','KS','QS']");
+        js4.executeScript("renderCards()");
+        js4.executeScript("updateCards()");
+
+        driver4.findElement(By.id("drawButton")).click();
+
+        js4.executeScript("cards =['5S', '8D','KS','QS','KH']");
+        js4.executeScript("renderCards()");
+        js4.executeScript("updateCards()");
+
+        driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(5)")).click();
+        driver4.findElement(By.id("passButton")).click();
+        Thread.sleep(200);
+
+        driver1.findElement(By.id("drawButton")).click();
+
+        js1.executeScript("cards =['7D', '5D','6D']");
+        js1.executeScript("renderCards()");
+        js1.executeScript("updateCards()");
+
+        driver1.findElement(By.id("drawButton")).click();
+
+        js1.executeScript("cards =['7D', '5D','6D','QD']");
+        js1.executeScript("renderCards()");
+        js1.executeScript("updateCards()");
+
+        driver1.findElement(By.id("drawButton")).click();
+
+        js1.executeScript("cards =['7D', '5D','6D','QD','JD']");
+        js1.executeScript("renderCards()");
+        js1.executeScript("updateCards()");
+
+        assertEquals("hidden", driver1.findElement(By.id("drawButton")).getCssValue("visibility"));
+        driver1.findElement(By.id("passButton")).click();
+        Thread.sleep(100);
+
+        driver2.findElement(By.id("drawButton")).click();
+
+        js2.executeScript("cards =['JC','6S']");
+        js2.executeScript("renderCards()");
+        js2.executeScript("updateCards()");
+
+        driver2.findElement(By.id("drawButton")).click();
+
+        js2.executeScript("cards =['JC','6S','JS']");
+        js2.executeScript("renderCards()");
+        js2.executeScript("updateCards()");
+
+        driver2.findElement(By.id("drawButton")).click();
+
+        js2.executeScript("cards =['JC','6S','JS','10S']");
+        js2.executeScript("renderCards()");
+        js2.executeScript("updateCards()");
+
+        assertEquals("hidden", driver2.findElement(By.id("drawButton")).getCssValue("visibility"));
+        driver2.findElement(By.id("passButton")).click();
+
+        Thread.sleep(100);
+
+        driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        Thread.sleep(200);
+        table = driver3.findElement(By.id("table"));
+        val1 = table.getText();
+        assertTrue(val1.contains("38.36.0.75."));
+
+        WebElement finalScore = driver3.findElement(By.id("finalScore"));
+        String val2 = finalScore.getText();
+        assertEquals("59.36.3.114", val2);
+        assertEquals("3", server.getWinner());
+    }
 }

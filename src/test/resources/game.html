@@ -86,13 +86,13 @@
                 let cc = ele.id;
                 if(cc.slice(0,-1)=='8'){
                     let suit_p = prompt("Enter suit (S,C,H,D): ", "S");
-                    if(suit_p!=null) cc = '8'+suit_p;
+                    if(suit_p!=null) cc = "8"+suit_p;
                 }
                 wsSendMessage("discard,"+cc+","+player_id+","+ele.id);
                 removeCard(ele.id);
                 let element = ele;
                 if(two_counts==0) passButton.style.visibility = "visible";
-                if(ele.id.includes("Q") || ele.id.includes("1") || ele.id.includes("2")){
+                if(ele.id.includes("Q") || ele.id.slice(0,-1) =="1" || ele.id.includes("2")){
                     console.log("special: "+ele.id);
                     wsSendMessage("special,"+ele.id[0])
                 }
