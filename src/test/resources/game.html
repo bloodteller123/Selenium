@@ -210,15 +210,21 @@
             wsSendMessage("pass,"+player_id);
         }
         function draw(){
-            if(counter<3){
+            if(two_counts!=0){
+                console.log("DRAW");
+                two_counts--;
+                wsSendMessage("draw,"+player_id);
+                
+            }else {
+                if(counter<3){
                 console.log("DRAW");
                 counter++;
                 wsSendMessage("draw,"+player_id);
-                two_counts = two_counts==0? 0: two_counts-1;
-            }
-            if(counter>=3){
+                
+                }else if(counter>=3){
                 passButton.style.visibility = "visible";
                 drawButton.style.visibility = "hidden";
+                }
             }
         }
     </script>
