@@ -492,7 +492,7 @@ public class AcceptanceTest {
         js1.executeScript("document.getElementById('cards').children[2].setAttribute('id', '5S')");
         js1.executeScript("document.getElementById('cards').children[2].innerHTML = '5S'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
-        js1.executeScript("cards = ['3H','6C','5S']");
+        js1.executeScript("cards = ['3H','6D','5S']");
         js1.executeScript("renderCards()");
 
         drawB.click();
@@ -500,7 +500,7 @@ public class AcceptanceTest {
         js1.executeScript("document.getElementById('cards').children[3].setAttribute('id', '7H')");
         js1.executeScript("document.getElementById('cards').children[3].innerHTML = '7H'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
-        js1.executeScript("cards = ['3H','6C','5S','7H']");
+        js1.executeScript("cards = ['3H','6D','5S','7H']");
         js1.executeScript("renderCards()");
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(4)")).click();
         WebElement discard = driver1.findElement(By.id("discard"));
@@ -547,7 +547,7 @@ public class AcceptanceTest {
         js1.executeScript("document.getElementById('cards').children[2].setAttribute('id', '5S')");
         js1.executeScript("document.getElementById('cards').children[2].innerHTML = '5S'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
-        js1.executeScript("cards = ['3H','6C','5S']");
+        js1.executeScript("cards = ['3H','6D','5S']");
         js1.executeScript("renderCards()");
 
         drawB.click();
@@ -555,7 +555,7 @@ public class AcceptanceTest {
         js1.executeScript("document.getElementById('cards').children[3].setAttribute('id', '4H')");
         js1.executeScript("document.getElementById('cards').children[3].innerHTML = '4H'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
-        js1.executeScript("cards = ['3H','6C','5S','4H']");
+        js1.executeScript("cards = ['3H','6D','5S','4H']");
         js1.executeScript("renderCards()");
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(4)")).click();
         alert = wait.until(ExpectedConditions.alertIsPresent());
@@ -563,6 +563,91 @@ public class AcceptanceTest {
         alert.accept();
         assertEquals("visible", passB.getCssValue("visibility"));
         assertEquals("hidden", drawB.getCssValue("visibility"));
+    }
+    @Test
+    void row62() throws InterruptedException {
+        driver1.get(sampleFile.toUri().toString());
+//        driver2.get(sampleFile.toUri().toString());
+//        driver3.get(sampleFile.toUri().toString());
+//        driver4.get(sampleFile.toUri().toString());
+        Thread.sleep(1000);
+        driver1.findElement(By.id("startButton")).click();
+        Thread.sleep(1000);
+        js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3H')");
+        js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3H'");
+        js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
+        js1.executeScript("cards =['3H']");
+        js1.executeScript("renderCards()");
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver1)
+                .withTimeout(Duration.ofSeconds(5))
+                .pollingEvery(Duration.ofSeconds(1))
+                .ignoring(NoSuchElementException.class);
+
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        assertNotNull(alert);
+        alert.accept();
+        WebElement drawB = driver1.findElement(By.id("drawButton"));
+        WebElement passB = driver1.findElement(By.id("passButton"));
+
+        assertEquals("hidden", passB.getCssValue("visibility"));
+        assertEquals("visible", drawB.getCssValue("visibility"));
+        drawB.click();
+        Thread.sleep(1000);
+        js1.executeScript("document.getElementById('cards').children[1].setAttribute('id', '6D')");
+        js1.executeScript("document.getElementById('cards').children[1].innerHTML = '6D'");
+        js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
+        js1.executeScript("cards = ['3H','6D']");
+        js1.executeScript("renderCards()");
+
+        drawB.click();
+        Thread.sleep(1000);
+        js1.executeScript("document.getElementById('cards').children[2].setAttribute('id', '8H')");
+        js1.executeScript("document.getElementById('cards').children[2].innerHTML = '8H'");
+        js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
+        js1.executeScript("cards = ['3H','6D','8H']");
+        js1.executeScript("renderCards()");
+
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(3)")).click();
+        alert = wait.until(ExpectedConditions.alertIsPresent());
+        assertNotNull(alert);
+        alert.sendKeys("C");
+        alert.accept();
+        Thread.sleep(500);
+        WebElement discard = driver1.findElement(By.id("discard"));
+        assertEquals("8C", discard.getText());
+    }
+    @Test
+    void row63() throws InterruptedException {
+        driver1.get(sampleFile.toUri().toString());
+//        driver2.get(sampleFile.toUri().toString());
+//        driver3.get(sampleFile.toUri().toString());
+//        driver4.get(sampleFile.toUri().toString());
+        Thread.sleep(1000);
+        driver1.findElement(By.id("startButton")).click();
+        Thread.sleep(1000);
+
+        js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
+        js1.executeScript("cards =['KS','3C']");
+        js1.executeScript("renderCards()");
+
+        WebElement drawB = driver1.findElement(By.id("drawButton"));
+        WebElement passB = driver1.findElement(By.id("passButton"));
+
+        assertEquals("hidden", passB.getCssValue("visibility"));
+        assertEquals("visible", drawB.getCssValue("visibility"));
+        drawB.click();
+        Thread.sleep(1000);
+
+        js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
+        js1.executeScript("cards = ['KS','3C','6C']");
+        js1.executeScript("renderCards()");
+
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(3)")).click();
+
+        Thread.sleep(500);
+        WebElement discard = driver1.findElement(By.id("discard"));
+        assertEquals("6C", discard.getText());
     }
     //js4.executeScript("document.getElementById('cards').innerHTML='';cards = [7D, JH, QH, KH, 5C]");
     //js4.executeScript("renderCards()");
