@@ -106,6 +106,34 @@ public class Server extends WebSocketServer {
                 dealCard(Integer.parseInt(msgs[1]));
                 updateStock();
                 break;
+            case "end":
+                updateScore();
+                sendScore();
+                if(checkWin())
+                    sendWinner();
+                else{
+                    current_round_starter = next_round_starter;
+                    next_round_starter = current_round_starter%conns.size()+1;
+                    broadcast("end,"+current_round_starter+","+next_round_starter);
+                }
+                break;
+        }
+    }
+    public void sendWinner(){
+        Collections.sort(players, (p1, p2) -> p1.getScore() - p2.getScore());
+        String sent = "Winner is "+players.get(0).getId();
+        for(WebSocket ws : conns){
+            ws.send("winner,"+sent);
+        }
+    }
+    public void sendScore(){
+        // send score
+        System.out.println(conns.size());
+        String score = "";
+        for(Player p: players) score+= p.getScore()+",";
+//        broadcast("score,"+score);
+        for(WebSocket wb : conns){
+            wb.send("score,"+score);
         }
     }
     public void removeCards(String discard, int id, String old_c){

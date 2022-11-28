@@ -186,6 +186,18 @@
             }else if(arr[0]=="two"){
                 console.log("received two");
                 two_counts = arr[1];
+            }else if(arr[0]=="end"){
+                cards = []
+                current_round_starter = arr[1];
+                player_indication.innerHTML = "Current player is player" +current_round_starter+" Next player will be player" + arr[2]; 
+                welcomeMsg.innerHTML = "Wait for Player"+current_round_starter+" to start the game";
+                if(player_id==current_round_starter) startButton.style.visibility = "visible";
+                else{
+                    startButton.style.visibility = "hidden";
+                    startButton.innerText = "START";
+                    startButton.disabled="false";
+                    passButton.style.visibility = "hidden";
+                }
             }
         }
         function wsClose(event){
