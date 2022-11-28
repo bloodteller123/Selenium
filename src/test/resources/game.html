@@ -191,7 +191,8 @@
                 console.log("DRAW");
                 counter++;
                 wsSendMessage("draw,"+player_id);
-            }else{
+            }
+            if(counter>=3){
                 passButton.style.visibility = "visible";
                 drawButton.style.visibility = "hidden";
             }
