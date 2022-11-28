@@ -59,6 +59,8 @@
         }
 
         function renderCards(){
+            console.log("!!!!!!!!!");
+            console.log(cards);
             document.getElementById('cards').innerHTML = cards.map(c =>
                 `
                 <div id="${c}" onclick="selectCard(this)" style="width:50px;height:30px;border: 1rem solid;margin: 0 auto">${c}</div>

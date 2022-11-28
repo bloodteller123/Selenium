@@ -42,9 +42,9 @@ public class AcceptanceTest {
     void setup() throws InterruptedException {
         Thread.sleep(1000);
         driver1 = new ChromeDriver();
-        driver2 = new ChromeDriver();
-        driver3 = new ChromeDriver();
-        driver4 = new ChromeDriver();
+//        driver2 = new ChromeDriver();
+//        driver3 = new ChromeDriver();
+//        driver4 = new ChromeDriver();
 
         js1 = (JavascriptExecutor) driver1;
         js2 = (JavascriptExecutor) driver2;
@@ -60,10 +60,10 @@ public class AcceptanceTest {
     }
     @AfterEach
     void teardown() throws InterruptedException {
-        driver1.quit();
-        driver2.quit();
-        driver3.quit();
-        driver4.quit();
+//        driver1.quit();
+//        driver2.quit();
+//        driver3.quit();
+//        driver4.quit();
     }
     @Test
     void row41() throws InterruptedException {
@@ -367,6 +367,44 @@ public class AcceptanceTest {
 
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         assertNotNull(alert);
+    }
+    @Test
+    void row58() throws InterruptedException {
+        driver1.get(sampleFile.toUri().toString());
+//        driver2.get(sampleFile.toUri().toString());
+//        driver3.get(sampleFile.toUri().toString());
+//        driver4.get(sampleFile.toUri().toString());
+        Thread.sleep(1000);
+        driver1.findElement(By.id("startButton")).click();
+        Thread.sleep(1000);
+        js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3H')");
+        js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3H'");
+        js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
+        js1.executeScript("cards =['3H']");
+        js1.executeScript("renderCards()");
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver1)
+                .withTimeout(Duration.ofSeconds(5))
+                .pollingEvery(Duration.ofSeconds(1))
+                .ignoring(NoSuchElementException.class);
+
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        assertNotNull(alert);
+        alert.accept();
+        WebElement drawB = driver1.findElement(By.id("drawButton"));
+        WebElement passB = driver1.findElement(By.id("passButton"));
+
+        assertEquals("hidden", passB.getCssValue("visibility"));
+        assertEquals("visible", drawB.getCssValue("visibility"));
+        drawB.click();
+        Thread.sleep(1000);
+        js1.executeScript("document.getElementById('cards').children[1].setAttribute('id', '6C')");
+        js1.executeScript("document.getElementById('cards').children[1].innerHTML = '6C'");
+        js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
+        js1.executeScript("cards = ['3H','6C']");
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(2)")).click();
+        WebElement discard = driver1.findElement(By.id("discard"));
+        assertEquals("6C", discard.getText());
     }
     //js4.executeScript("document.getElementById('cards').innerHTML='';cards = [7D, JH, QH, KH, 5C]");
     //js4.executeScript("renderCards()");
