@@ -17,7 +17,12 @@ public class Player {
     public void removeCard(String c){
         this.cards.removeIf(card -> card.toString().equals(c));
     }
-
+    public void setCards(Card[] cs){
+        this.cards = new ArrayList<>();
+        for(Card c: cs){
+            addCard(c);
+        }
+    }
     public int getScore(){
         return this.score;
     }

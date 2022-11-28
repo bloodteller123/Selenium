@@ -117,7 +117,23 @@ public class Server extends WebSocketServer {
                     broadcast("end,"+current_round_starter+","+next_round_starter);
                 }
                 break;
+            case "updateCards":
+                updateCards(msgs[1], Integer.parseInt(msgs[2]));
+                break;
         }
+    }
+    public void updateCards(String cards_str, int playerId){
+        String[] cards_arr = cards_str.split(".");
+        Card[] cards = new Card[cards_arr.length];
+        for(int i=0; i< cards_arr.length;i++){
+            String t = cards_arr[i];
+            String rank = t.substring(0,t.length()-1);
+            String suit = t.substring(t.length()-1);
+
+            cards[i] = new Card(rank, suit);
+        }
+        players.get(playerId-1).setCards(cards);
+        System.out.println(Arrays.toString(cards));
     }
     public void sendWinner(){
         Collections.sort(players, (p1, p2) -> p1.getScore() - p2.getScore());

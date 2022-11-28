@@ -44,7 +44,7 @@ public class AcceptanceTest {
         driver1 = new ChromeDriver();
         driver2 = new ChromeDriver();
         driver3 = new ChromeDriver();
-//        driver4 = new ChromeDriver();
+        driver4 = new ChromeDriver();
 
         js1 = (JavascriptExecutor) driver1;
         js2 = (JavascriptExecutor) driver2;
@@ -60,10 +60,10 @@ public class AcceptanceTest {
     }
     @AfterEach
     void teardown() throws InterruptedException {
-//        driver1.quit();
-//        driver2.quit();
-//        driver3.quit();
-//        driver4.quit();
+        driver1.quit();
+        driver2.quit();
+        driver3.quit();
+        driver4.quit();
     }
     @Test
     void row41() throws InterruptedException {
@@ -869,6 +869,47 @@ public class AcceptanceTest {
         js1.executeScript("cards =['2C','4D']");
         js1.executeScript("renderCards()");
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        Thread.sleep(500);
+        WebElement discard = driver1.findElement(By.id("discard"));
+        assertEquals("2C", discard.getText());
+
+        js2.executeScript("cards =['4C','6C']");
+        js2.executeScript("renderCards()");
+        driver1.findElement(By.id("passButton")).click();
+        Thread.sleep(300);
+
+        WebElement drawB = driver2.findElement(By.id("drawButton"));
+        WebElement passB = driver2.findElement(By.id("passButton"));
+
+        assertEquals("hidden", passB.getCssValue("visibility"));
+        assertEquals("visible", drawB.getCssValue("visibility"));
+        driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        Thread.sleep(500);
+        driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
+        Thread.sleep(500);
+
+        WebElement welcomeMsg = driver1.findElement(By.id("welcome"));
+
+        String val1 = welcomeMsg.getText();
+        System.out.println(val1);
+        assertEquals("Wait for Player2 to start the game", val1);
+        WebElement startB = driver2.findElement(By.id("startButton"));
+        assertEquals("visible", startB.getCssValue("visibility"));
+    }
+    @Test
+    void row77() throws InterruptedException {
+        driver1.get(sampleFile.toUri().toString());
+        driver2.get(sampleFile.toUri().toString());
+//        driver3.get(sampleFile.toUri().toString());
+//        driver4.get(sampleFile.toUri().toString());
+        Thread.sleep(1000);
+        driver1.findElement(By.id("startButton")).click();
+        Thread.sleep(1000);
+
+        js1.executeScript("document.getElementById('discard').innerHTML = '3D'");
+        js1.executeScript("cards =['1S','4D']");
+        js1.executeScript("renderCards()");
+        driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(2)")).click();
         Thread.sleep(500);
         WebElement discard = driver1.findElement(By.id("discard"));
         assertEquals("2C", discard.getText());
