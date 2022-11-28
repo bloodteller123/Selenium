@@ -851,8 +851,9 @@ public class AcceptanceTest {
 //        js2.executeScript("document.getElementById('discard').innerHTML = '7C'");
         assertEquals("visible", passB.getCssValue("visibility"));
         assertEquals("visible", drawB.getCssValue("visibility"));
-        driver2.findElement(By.id("passButton")).click();
         assertEquals(3,server.getNextPlayer());
+        driver2.findElement(By.id("passButton")).click();
+        assertEquals(1,server.getNextPlayer());
     }
     //js4.executeScript("document.getElementById('cards').innerHTML='';cards = [7D, JH, QH, KH, 5C]");
     //js4.executeScript("renderCards()");

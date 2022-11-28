@@ -175,6 +175,8 @@
                             }
                             console.log(counts);
                             console.log(Object.values(counts));
+                            let freq = Object.values(counts);
+                            if(freq.some(el => el > 1)) two_counts=0;
                         }
                     }
                 }
