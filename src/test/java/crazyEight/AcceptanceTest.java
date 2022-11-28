@@ -60,10 +60,10 @@ public class AcceptanceTest {
     }
     @AfterEach
     void teardown() throws InterruptedException {
-        driver1.quit();
-        driver2.quit();
-        driver3.quit();
-        driver4.quit();
+//        driver1.quit();
+//        driver2.quit();
+//        driver3.quit();
+//        driver4.quit();
     }
     @Test
     void row41() throws InterruptedException {
@@ -1075,6 +1075,7 @@ public class AcceptanceTest {
 
         assertEquals(2, server.getCurrentRoundStarter());
         Thread.sleep(200);
+        driver2.findElement(By.id("startButton")).click();
         js2.executeScript("document.getElementById('discard').innerHTML = '4D'");
 
         js2.executeScript("cards =['9D', '3S', '9C', '3H', 'JC']");
@@ -1221,7 +1222,7 @@ public class AcceptanceTest {
         table = driver3.findElement(By.id("table"));
         val1 = table.getText();
         assertTrue(val1.contains("38.36.0.75."));
-
+        Thread.sleep(200);
         WebElement finalScore = driver3.findElement(By.id("finalScore"));
         String val2 = finalScore.getText();
         assertEquals("59.36.3.114", val2);

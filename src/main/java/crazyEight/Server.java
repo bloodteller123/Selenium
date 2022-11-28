@@ -22,6 +22,7 @@ public class Server extends WebSocketServer {
     private int next_player_id;
     private int next_round_starter;
     private boolean reverse;
+    private String winner = "";
     public Server(int port) {
         super(new InetSocketAddress(port));
         conns = new ArrayList<>();
@@ -111,6 +112,7 @@ public class Server extends WebSocketServer {
                 updateScore();
                 discardCard = "";
                 reverse = false;
+                deck = new Deck();
                 if(checkWin())
                     sendWinner();
                 else{
@@ -136,13 +138,18 @@ public class Server extends WebSocketServer {
         }
         players.get(playerId-1).setCards(cards);
     }
+    public String getWinner(){
+        return this.winner;
+    }
     public void sendWinner(){
         Collections.sort(players, (p1, p2) -> p1.getScore() - p2.getScore());
-        String sent = "Winner is "+players.get(0).getId();
+        winner = Integer.toString(players.get(0).getId());
+        String sent = "Winner is "+winner;
         System.out.println(sent);
-        for(WebSocket ws : conns){
-            ws.send("winner,"+sent);
-        }
+//        for(WebSocket ws : conns){
+//            ws.send("winner,"+sent);
+//        }
+        broadcast("winner,"+sent);
     }
     public void sendScore(){
         // send score
