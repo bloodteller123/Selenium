@@ -101,6 +101,10 @@ public class Server extends WebSocketServer {
                 else  next_player_id = next_player_id==conns.size()? 1 : next_player_id+1;
                 broadcast("turn,"+current_player_id+","+next_player_id+","+(reverse?"right":"left"));
                 break;
+            case "draw":
+                dealCard(Integer.parseInt(msgs[1]));
+                updateStock();
+                break;
         }
     }
     public void removeCards(String discard, int id, String old_c){

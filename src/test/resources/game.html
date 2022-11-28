@@ -186,6 +186,16 @@
             passButton.style.visibility = "hidden";
             wsSendMessage("pass,"+player_id);
         }
+        function draw(){
+            if(counter<3){
+                console.log("DRAW");
+                counter++;
+                wsSendMessage("draw,"+player_id);
+            }else{
+                passButton.style.visibility = "visible";
+                drawButton.style.visibility = "hidden";
+            }
+        }
     </script>
 </body>
 </html>
