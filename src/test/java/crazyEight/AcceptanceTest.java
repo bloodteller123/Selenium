@@ -666,7 +666,8 @@ public class AcceptanceTest {
         Thread.sleep(500);
         WebElement discard = driver1.findElement(By.id("discard"));
         assertEquals("2C", discard.getText());
-        Thread.sleep(500);
+        driver1.findElement(By.id("passButton")).click();
+        Thread.sleep(300);
 
         js2.executeScript("cards =['4H']");
         js2.executeScript("renderCards()");
@@ -677,13 +678,13 @@ public class AcceptanceTest {
         assertEquals("hidden", passB.getCssValue("visibility"));
         assertEquals("visible", drawB.getCssValue("visibility"));
         drawB.click();
+        drawB.click();
         Thread.sleep(1000);
-
-        js2.executeScript("document.getElementById('discard').innerHTML = '7C'");
-        js2.executeScript("cards = ['KS','3C','6C']");
+//        js2.executeScript("document.getElementById('discard').innerHTML = '7C'");
+        js2.executeScript("cards = ['4H','6C','9D']");
         js2.executeScript("renderCards()");
 
-        driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(3)")).click();
+        driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(2)")).click();
 
         Thread.sleep(500);
         discard = driver2.findElement(By.id("discard"));

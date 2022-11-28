@@ -40,6 +40,8 @@
         let counter = 0;
         let current_round_starter = -1;
         let current_player = -1;
+        let two_counts = 0;
+        let counts;
         document.getElementById('cards').style.pointerEvents = "none";
 
         webSocket.onopen = function(event){ wsOpen(event);};
@@ -87,7 +89,7 @@
                 wsSendMessage("discard,"+cc+","+player_id+","+ele.id);
                 removeCard(ele.id);
                 let element = ele;
-                passButton.style.visibility = "visible";
+                if(two_counts==0) passButton.style.visibility = "visible";
                 if(ele.id.includes("Q") || ele.id.includes("1" || ele.id.includes("2"))){
                     wsSendMessage("special,"+ele.id[0])
                 }
@@ -156,9 +158,30 @@
                     counter = 0;
                     console.log('auto');
                     document.getElementById('cards').style.pointerEvents = "auto";
+                    if(two_counts!=0){
+                        if(cards.length<2){
+                            // draw();
+                            // draw();
+                        }else{
+                            counts = {};
+                            totalC = [...cards, discardPile.innerHTML];
+                            console.log(totalC);
+                            for(const ch of totalC){
+                                let first = ch.slice(0,-1);
+                                let second = ch.slice(-1);
+                                counts[first] = counts[first] ? counts[first] + 1 : 1;
+                                counts[second] = counts[second] ? counts[second] + 1 : 1;
+                            }
+                            console.log(counts);
+                            console.log(counts.values());
+                        }
+                    }
                 }
+                
             }else if(arr[0]=="updateN"){
                 player_indication.innerHTML = "Current player is player" +current_player+" Next player will be player" + arr[1]+" Direction: "+arr[2];
+            }else if(arr[0]=="two"){
+                two_counts = arr[1];
             }
         }
         function wsClose(event){
@@ -191,6 +214,7 @@
                 console.log("DRAW");
                 counter++;
                 wsSendMessage("draw,"+player_id);
+                two_counts = two_counts==0? 0: two_counts-1;
             }
             if(counter>=3){
                 passButton.style.visibility = "visible";
