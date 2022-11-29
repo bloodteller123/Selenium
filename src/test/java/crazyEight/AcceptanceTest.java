@@ -60,10 +60,11 @@ public class AcceptanceTest {
     }
     @AfterEach
     void teardown() throws InterruptedException {
-//        driver1.quit();
-//        driver2.quit();
-//        driver3.quit();
-//        driver4.quit();
+        driver1.quit();
+        driver2.quit();
+        driver3.quit();
+        driver4.quit();
+        server.stop();
     }
     @Test
     void row41() throws InterruptedException {
@@ -813,7 +814,8 @@ public class AcceptanceTest {
 //        js2.executeScript("document.getElementById('discard').innerHTML = '7C'");
         js2.executeScript("cards = ['4H','2H','9D']");
         js2.executeScript("renderCards()");
-        driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(5)")).click();
+        driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(2)")).click();
+
 
     }
     @Test

@@ -49,6 +49,7 @@
         let current_player = -1;
         let two_counts = 0;
         let counts;
+        let factor = 1;
         document.getElementById('cards').style.pointerEvents = "none";
 
         webSocket.onopen = function(event){ wsOpen(event);};
@@ -99,7 +100,7 @@
                 if(two_counts==0) passButton.style.visibility = "visible";
                 if(ele.id.includes("Q") || ele.id.slice(0,-1) =="1" || ele.id.includes("2")){
                     console.log("special: "+ele.id);
-                    wsSendMessage("special,"+ele.id[0])
+                    wsSendMessage("special,"+ele.id[0]+","+2*factor);
                 }
                 element.remove();
             }else{
@@ -172,7 +173,7 @@
                     document.getElementById('cards').style.pointerEvents = "auto";
                     if(two_counts!=0){
                         console.log("turn,cards: "+cards);
-                        if(cards.length<2){
+                        if(cards.length<factor){
                             // draw();
                             // draw();
                         }else{
@@ -197,6 +198,7 @@
             }else if(arr[0]=="two"){
                 console.log("received two");
                 two_counts = arr[1];
+                factor = arr[1];
             }else if(arr[0]=="end"){
                 cards = []
                 current_round_starter = arr[1];

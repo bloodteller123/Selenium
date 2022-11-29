@@ -93,7 +93,7 @@ public class Server extends WebSocketServer {
                     broadcast("updateN,"+next_player_id+","+(reverse?"right":"left"));
                 }else{
                     System.out.println("next_player_id: "+next_player_id);
-                    conns.get(next_player_id-1).send("two,"+2);
+                    conns.get(next_player_id-1).send("two,"+Integer.parseInt(msgs[2]));
                 }
                 break;
             case "pass":
