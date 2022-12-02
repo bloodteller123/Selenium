@@ -468,9 +468,9 @@ public class AcceptanceTest {
     @Test
     void row60() throws InterruptedException {
         driver1.get(sampleFile.toUri().toString());
-//        driver2.get(sampleFile.toUri().toString());
-//        driver3.get(sampleFile.toUri().toString());
-//        driver4.get(sampleFile.toUri().toString());
+        driver2.get(sampleFile.toUri().toString());
+        driver3.get(sampleFile.toUri().toString());
+        driver4.get(sampleFile.toUri().toString());
         Thread.sleep(1000);
         driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
@@ -523,9 +523,9 @@ public class AcceptanceTest {
     @Test
     void row61() throws InterruptedException {
         driver1.get(sampleFile.toUri().toString());
-//        driver2.get(sampleFile.toUri().toString());
-//        driver3.get(sampleFile.toUri().toString());
-//        driver4.get(sampleFile.toUri().toString());
+        driver2.get(sampleFile.toUri().toString());
+        driver3.get(sampleFile.toUri().toString());
+        driver4.get(sampleFile.toUri().toString());
         Thread.sleep(1000);
         driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
@@ -581,9 +581,9 @@ public class AcceptanceTest {
     @Test
     void row62() throws InterruptedException {
         driver1.get(sampleFile.toUri().toString());
-//        driver2.get(sampleFile.toUri().toString());
-//        driver3.get(sampleFile.toUri().toString());
-//        driver4.get(sampleFile.toUri().toString());
+        driver2.get(sampleFile.toUri().toString());
+        driver3.get(sampleFile.toUri().toString());
+        driver4.get(sampleFile.toUri().toString());
         Thread.sleep(1000);
         driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
@@ -634,9 +634,9 @@ public class AcceptanceTest {
     @Test
     void row63() throws InterruptedException {
         driver1.get(sampleFile.toUri().toString());
-//        driver2.get(sampleFile.toUri().toString());
-//        driver3.get(sampleFile.toUri().toString());
-//        driver4.get(sampleFile.toUri().toString());
+        driver2.get(sampleFile.toUri().toString());
+        driver3.get(sampleFile.toUri().toString());
+        driver4.get(sampleFile.toUri().toString());
         Thread.sleep(1000);
         driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
@@ -667,8 +667,8 @@ public class AcceptanceTest {
     void row67() throws InterruptedException {
         driver1.get(sampleFile.toUri().toString());
         driver2.get(sampleFile.toUri().toString());
-//        driver3.get(sampleFile.toUri().toString());
-//        driver4.get(sampleFile.toUri().toString());
+        driver3.get(sampleFile.toUri().toString());
+        driver4.get(sampleFile.toUri().toString());
         Thread.sleep(1000);
         driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
@@ -707,8 +707,8 @@ public class AcceptanceTest {
     void row68() throws InterruptedException {
         driver1.get(sampleFile.toUri().toString());
         driver2.get(sampleFile.toUri().toString());
-//        driver3.get(sampleFile.toUri().toString());
-//        driver4.get(sampleFile.toUri().toString());
+        driver3.get(sampleFile.toUri().toString());
+        driver4.get(sampleFile.toUri().toString());
         Thread.sleep(1000);
         driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
@@ -753,8 +753,8 @@ public class AcceptanceTest {
     void row69() throws InterruptedException {
         driver1.get(sampleFile.toUri().toString());
         driver2.get(sampleFile.toUri().toString());
-//        driver3.get(sampleFile.toUri().toString());
-//        driver4.get(sampleFile.toUri().toString());
+        driver3.get(sampleFile.toUri().toString());
+        driver4.get(sampleFile.toUri().toString());
         Thread.sleep(1000);
         driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
@@ -798,7 +798,7 @@ public class AcceptanceTest {
         driver1.get(sampleFile.toUri().toString());
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
-//        driver4.get(sampleFile.toUri().toString());
+        driver4.get(sampleFile.toUri().toString());
         Thread.sleep(1000);
         driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
@@ -828,15 +828,29 @@ public class AcceptanceTest {
         js2.executeScript("cards = ['4H','2H','9D']");
         js2.executeScript("renderCards()");
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(2)")).click();
+        passB.click();
+        WebElement drawB3 = driver3.findElement(By.id("drawButton"));
 
+        assertEquals("visible", drawB3.getCssValue("visibility"));
+        drawB3.click();
+        drawB3.click();
+        drawB3.click();
+        drawB3.click();
+        js3.executeScript("cards = ['7D','5S','6D','6H','7C'");
+        js3.executeScript("renderCards()");
+        js3.executeScript("updateCards()");
+        driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(4)")).click();
 
+        Thread.sleep(500);
+        discard = driver3.findElement(By.id("discard"));
+        assertEquals("6H", discard.getText());
     }
     @Test
     void row72() throws InterruptedException {
         driver1.get(sampleFile.toUri().toString());
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
-//        driver4.get(sampleFile.toUri().toString());
+        driver4.get(sampleFile.toUri().toString());
         Thread.sleep(1000);
         driver1.findElement(By.id("startButton")).click();
         Thread.sleep(1000);
@@ -874,17 +888,17 @@ public class AcceptanceTest {
     void row73() throws InterruptedException {
         driver1.get(sampleFile.toUri().toString());
         driver2.get(sampleFile.toUri().toString());
-//        driver3.get(sampleFile.toUri().toString());
-//        driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        driver3.get(sampleFile.toUri().toString());
+        driver4.get(sampleFile.toUri().toString());
+//        Thread.sleep(1000);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(300);
 
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
         js1.executeScript("cards =['2C','4D']");
         js1.executeScript("renderCards()");
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
-        Thread.sleep(500);
+        Thread.sleep(200);
         WebElement discard = driver1.findElement(By.id("discard"));
         assertEquals("2C", discard.getText());
 
@@ -899,9 +913,9 @@ public class AcceptanceTest {
         assertEquals("hidden", passB.getCssValue("visibility"));
         assertEquals("visible", drawB.getCssValue("visibility"));
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
-        Thread.sleep(500);
+        Thread.sleep(200);
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
-        Thread.sleep(500);
+        Thread.sleep(200);
 
         WebElement welcomeMsg = driver1.findElement(By.id("welcome"));
 

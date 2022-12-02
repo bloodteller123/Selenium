@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="49ba2b5f-1fde-4046-886a-6fe3ee2ea557" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/crazyEight/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crazyEight/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/crazyEight/AcceptanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/crazyEight/AcceptanceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/game.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +57,7 @@
       <recent name="$PROJECT_DIR$/src/test/java" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AcceptanceTest.row77">
+  <component name="RunManager" selected="JUnit.AcceptanceTest">
     <configuration name="AcceptanceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="crazy8" />
       <extension name="coverage">
@@ -141,11 +139,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AcceptanceTest" />
         <item itemvalue="JUnit.AcceptanceTest.row77" />
         <item itemvalue="JUnit.AcceptanceTest.row81" />
         <item itemvalue="JUnit.AcceptanceTest.row48" />
         <item itemvalue="JUnit.AcceptanceTest.row44" />
-        <item itemvalue="JUnit.AcceptanceTest" />
       </list>
     </recent_temporary>
   </component>
