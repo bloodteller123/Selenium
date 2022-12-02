@@ -141,7 +141,13 @@ public class AcceptanceTest {
         js1.executeScript("cards[0] = 'QC'");
 
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver2)
+                .withTimeout(Duration.ofSeconds(5))
+                .pollingEvery(Duration.ofSeconds(1))
+                .ignoring(NoSuchElementException.class);
 
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        assertNotNull(alert);
         assertEquals(3, server.getNextPlayer());
     }
     @Test
@@ -289,6 +295,13 @@ public class AcceptanceTest {
         js4.executeScript("cards[0] = 'QC'");
 
         driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver1)
+                .withTimeout(Duration.ofSeconds(5))
+                .pollingEvery(Duration.ofSeconds(1))
+                .ignoring(NoSuchElementException.class);
+
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        assertNotNull(alert);
         assertEquals(2, server.getNextPlayer());
     }
     @Test
@@ -931,6 +944,18 @@ public class AcceptanceTest {
 
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         Thread.sleep(300);
+        WebDriver[] drivers = new WebDriver[]{driver1, driver2,driver3,driver4};
+        Wait<WebDriver> wait;
+        Alert alert;
+        for(WebDriver d : drivers){
+            wait = new FluentWait<WebDriver>(d)
+                    .withTimeout(Duration.ofSeconds(5))
+                    .pollingEvery(Duration.ofSeconds(1))
+                    .ignoring(NoSuchElementException.class);
+            alert = wait.until(ExpectedConditions.alertIsPresent());
+            assertNotNull(alert);
+            alert.accept();
+        }
         WebElement table = driver2.findElement(By.id("table"));
         String val1 = table.getText();
         assertTrue(val1.contains("1.0.86.102."));
@@ -1070,6 +1095,17 @@ public class AcceptanceTest {
 
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         Thread.sleep(200);
+
+        WebDriver[] drivers = new WebDriver[]{driver1, driver2,driver3,driver4};
+        for(WebDriver d : drivers){
+            wait = new FluentWait<WebDriver>(d)
+                    .withTimeout(Duration.ofSeconds(5))
+                    .pollingEvery(Duration.ofSeconds(1))
+                    .ignoring(NoSuchElementException.class);
+            alert = wait.until(ExpectedConditions.alertIsPresent());
+            assertNotNull(alert);
+            alert.accept();
+        }
 
         WebElement table = driver2.findElement(By.id("table"));
         String val1 = table.getText();
@@ -1221,6 +1257,15 @@ public class AcceptanceTest {
 
         driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         Thread.sleep(200);
+        for(WebDriver d : drivers){
+            wait = new FluentWait<WebDriver>(d)
+                    .withTimeout(Duration.ofSeconds(5))
+                    .pollingEvery(Duration.ofSeconds(1))
+                    .ignoring(NoSuchElementException.class);
+            alert = wait.until(ExpectedConditions.alertIsPresent());
+            assertNotNull(alert);
+            alert.accept();
+        }
         table = driver3.findElement(By.id("table"));
         val1 = table.getText();
         assertTrue(val1.contains("38.36.0.75."));

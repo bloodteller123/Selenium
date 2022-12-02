@@ -109,6 +109,7 @@ public class Server extends WebSocketServer {
                 updateStock();
                 break;
             case "end":
+                broadcast("endNoti,"+msgs[1]);
                 sendScore();
                 updateScore();
                 discardCard = "";
@@ -217,7 +218,7 @@ public class Server extends WebSocketServer {
     }
 
     public static void main(String[] args) throws InterruptedException, IOException {
-        int port = 8888;
+        int port = 8800;
         Server s = new Server(port);
         s.start();
         System.out.println("game server started on port: " + s.getPort());
