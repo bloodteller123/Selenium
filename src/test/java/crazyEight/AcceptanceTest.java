@@ -23,7 +23,7 @@ public class AcceptanceTest {
     WebDriver driver2;
     WebDriver driver3;
     WebDriver driver4;
-    String path = "/Users/god/intellij-workspace/crazy8/src/test/resources/game.html";
+    String path = "src/test/resources/game.html";
     Path sampleFile;
     Server server;
     JavascriptExecutor js1;
