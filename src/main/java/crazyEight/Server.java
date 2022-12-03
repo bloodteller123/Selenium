@@ -83,7 +83,6 @@ public class Server extends WebSocketServer {
                 break;
             case "special":
                 if(msgs[1].equals("Q")){
-                    System.out.println(reverse);
                     conns.get(next_player_id-1).send("queen,");
                     if(reverse)  next_player_id = next_player_id==1? conns.size() : next_player_id-1;
                     else  next_player_id = next_player_id==conns.size()? 1 : next_player_id+1;
