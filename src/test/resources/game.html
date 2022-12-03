@@ -24,6 +24,8 @@
 <div id="cards" style="display:grid;grid-template-columns: repeat(10, 1fr);gap: 10px;background-color:orange;margin:0 auto;text-align:center">YOUR CARDS</div>
 <button id="drawButton" style="visibility: hidden;" onclick="draw()">DRAW</button>
 <button id="passButton" style="visibility: hidden;" onclick="pass()">PASS</button>
+<button id="exausted" style="visibility: hidden;" onclick="passExausted()">PASS</button>
+
 <!-- <table style="width:500px" id="table">
 
 </table> -->
@@ -43,6 +45,7 @@
         let table = document.getElementById("table");
         let winner = document.getElementById("winner");
         let finalScore = document.getElementById("finalScore");
+        let exaustedB = document.getElementById("exausted");
         let player_id = -1;
         let counter = 0;
         let current_round_starter = -1;
@@ -69,6 +72,10 @@
             renderCards();
         }
 
+        function passExausted(){
+            wsSendMessage("empty,"+player_id);
+        }
+
         function renderCards(){
             console.log("Inside renderCards(): "+cards);
             document.getElementById('cards').innerHTML = cards.map(c =>
@@ -87,7 +94,6 @@
         function selectCard(ele){
             console.log("Inside selectCard");
             console.log(ele);
-            console.log(checkSelection(ele.id.slice(0, -1), ele.id.slice(-1), discardPile.innerHTML));
             if(checkSelection(ele.id.slice(0, -1), ele.id.slice(-1), discardPile.innerHTML)){
                 let cc = ele.id;
                 if(cc.slice(0,-1)=='8'){
@@ -152,8 +158,10 @@
                 winner.innerHTML = arr[1];
                 finalScore.innerHTML += "<br/>"+"<br/>"+scores.join(".");
             }else if(arr[0]=="empty"){
-                passButton.style.visibility = "visible";
+                console.log(165);
+                passButton.style.visibility = "hidden";
                 drawButton.style.visibility = "hidden";
+                exaustedB.style.visibility = "visible";
                 deck.innerHTML = "EMPTY DECK";
             }else if(arr[0]=="stock"){
                 deck.innerHTML = arr[1];
@@ -178,21 +186,6 @@
                             // draw();
                             // draw();
                         }else{
-                            // counts = {};
-                            // // totalC = [...cards, discardPile.innerHTML];
-                            // totalC = [...cards];
-
-                            // // console.log(totalC);
-                            // for(const ch of totalC){
-                            //     let first = ch.slice(0,-1);
-                            //     let second = ch.slice(-1);
-                            //     counts[first] = counts[first] ? counts[first] + 1 : 1;
-                            //     counts[second] = counts[second] ? counts[second] + 1 : 1;
-                            // }
-                            // console.log(counts);
-                            // console.log(Object.values(counts));
-                            // let freq = Object.values(counts);
-                            // if(freq.some(el => el > 1)) two_counts=0;
                             let c_copy = [...cards];
                             if(check(c_copy, discardPile.innerHTML) >= two_counts) two_counts = 0;
                         }
@@ -206,6 +199,9 @@
                 factor = arr[1];
                 console.log(two_counts);
             }else if(arr[0]=="end"){
+                console.log(205);
+                passButton.style.visibility = "hidden";
+                drawButton.style.visibility = "hidden";
                 cards = []
                 current_round_starter = arr[1];
                 player_indication.innerHTML = "Current player is player" +current_round_starter+" Next player will be player" + arr[2]; 
@@ -215,7 +211,6 @@
                     startButton.style.visibility = "hidden";
                     startButton.innerText = "START";
                     startButton.disabled="false";
-                    passButton.style.visibility = "hidden";
                 }
             }else if(arr[0]=="score"){
                 console.log("score: ", arr[1]);
@@ -235,7 +230,10 @@
             }else if(arr[0]=="queen"){
                 alert("Your round is skipped");
             }else if(arr[0]=="endNoti"){
-                alert("Player "+arr[1]+" won the round");
+                if(arr[1]!==undefined) alert("Player "+arr[1]+" won the round");
+                else alert("Round Ends");
+            }else if(arr[1]=="liquidate"){
+                end();
             }
         }
         function checkTwo(){
@@ -263,6 +261,7 @@
         }
         function pass(){
             drawButton.style.visibility = "hidden";
+            console.log(266);
             passButton.style.visibility = "hidden";
             two_counts = 0;
             factor = 1;
@@ -275,7 +274,8 @@
                 wsSendMessage("draw,"+player_id);
                 
             }else{
-                passButton.style.visibility = "visible";
+                // console.log(278);
+                // passButton.style.visibility = "visible";
                 if(counter<3){
                 console.log("DRAW");
                 counter++;
@@ -284,6 +284,7 @@
                 }
                 console.log(counter);
                 if(counter>=3){
+                    console.log(287);
                     passButton.style.visibility = "visible";
                     drawButton.style.visibility = "hidden";
                 }

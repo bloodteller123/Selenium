@@ -23,6 +23,7 @@ public class Server extends WebSocketServer {
     private int next_round_starter;
     private boolean reverse;
     private String winner = "";
+    private int loop_player_id = -1;
     public Server(int port) {
         super(new InetSocketAddress(port));
         conns = new ArrayList<>();
@@ -109,7 +110,10 @@ public class Server extends WebSocketServer {
                 updateStock();
                 break;
             case "end":
-                broadcast("endNoti,"+msgs[1]);
+                System.out.println("loop_player_id"+loop_player_id);
+                if(loop_player_id==-1) broadcast("endNoti,"+msgs[1]);
+                else broadcast("endNoti,");
+                loop_player_id = -1;
                 sendScore();
                 updateScore();
                 discardCard = "";
@@ -125,6 +129,10 @@ public class Server extends WebSocketServer {
                 break;
             case "updateCards":
                 updateCards(msgs[1], Integer.parseInt(msgs[2]));
+                break;
+            case "empty":
+                if(loop_player_id==-1) loop_player_id = Integer.parseInt(msgs[1]);
+                else if(loop_player_id == next_player_id) conns.get(loop_player_id-1).send("liquidate,");
                 break;
         }
     }
@@ -155,7 +163,7 @@ public class Server extends WebSocketServer {
     }
     public void sendScore(){
         // send score
-        System.out.println(conns.size());
+//        System.out.println(conns.size());
         String score = "";
         for(Player p: players) score+= p.calculateScore()+".";
         System.out.println("score: "+score);
@@ -185,7 +193,7 @@ public class Server extends WebSocketServer {
     public void dealCard(int id){
         if(deck.isExausted()){
             broadcast("empty,");
-            // TODO
+            return;
         }
         if(id==0){
             for(int i=0;i<5;i++){
