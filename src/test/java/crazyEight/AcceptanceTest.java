@@ -40,7 +40,7 @@ public class AcceptanceTest {
     }
     @BeforeEach
     void setup() throws InterruptedException {
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1 = new ChromeDriver();
         driver2 = new ChromeDriver();
         driver3 = new ChromeDriver();
@@ -60,10 +60,10 @@ public class AcceptanceTest {
     }
     @AfterEach
     void teardown() throws InterruptedException {
-        driver1.quit();
-        driver2.quit();
-        driver3.quit();
-        driver4.quit();
+//        driver1.quit();
+//        driver2.quit();
+//        driver3.quit();
+//        driver4.quit();
         server.stop();
     }
     @Test
@@ -74,7 +74,7 @@ public class AcceptanceTest {
         driver4.get(sampleFile.toUri().toString());
 
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
         js1.executeScript("document.getElementById('discard').innerHTML = '3S'");
@@ -86,12 +86,11 @@ public class AcceptanceTest {
     }
     @Test
     void row42() throws InterruptedException {
-        Thread.sleep(5000);
         driver1.get(sampleFile.toUri().toString());
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
 
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '1H')");
@@ -100,7 +99,7 @@ public class AcceptanceTest {
         js1.executeScript("cards[0] = '1H'");
 
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
         assertEquals(4, server.getNextPlayer());
         WebElement indication1 = driver1.findElement(By.id("player_indication"));
         WebElement indication2 = driver2.findElement(By.id("player_indication"));
@@ -118,11 +117,11 @@ public class AcceptanceTest {
         String val4 = indication4.getText();
         assertTrue(val4.contains("right"));
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
         js4.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '7H')");
         js4.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '7H'");
         js4.executeScript("cards[0] = '7H'");
-        Thread.sleep(300);
+        Thread.sleep(100);
         driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
         assertEquals(3, server.getNextPlayer());
     }
@@ -132,9 +131,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', 'QC')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = 'QC'");
         js1.executeScript("document.getElementById('discard').innerHTML = '3C'");
@@ -156,9 +155,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-//        Thread.sleep(1000);
+//        Thread.sleep(310);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
         js1.executeScript("document.getElementById('discard').innerHTML = '3S'");
@@ -166,7 +165,7 @@ public class AcceptanceTest {
 
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
 
         js2.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
         js2.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
@@ -175,7 +174,7 @@ public class AcceptanceTest {
 
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
         driver2.findElement(By.id("passButton")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
 
         js3.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
         js3.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
@@ -184,7 +183,7 @@ public class AcceptanceTest {
 
         driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
         driver3.findElement(By.id("passButton")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
 
         js4.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
         js4.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
@@ -201,9 +200,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
         js1.executeScript("document.getElementById('discard').innerHTML = '3S'");
@@ -211,7 +210,7 @@ public class AcceptanceTest {
 
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
 
         js2.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
         js2.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
@@ -220,7 +219,7 @@ public class AcceptanceTest {
 
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
         driver2.findElement(By.id("passButton")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
 
         js3.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
         js3.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
@@ -229,7 +228,7 @@ public class AcceptanceTest {
 
         driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
         driver3.findElement(By.id("passButton")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
 
         js4.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '1H')");
         js4.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '1H'");
@@ -250,7 +249,7 @@ public class AcceptanceTest {
         js3.executeScript("cards[0] = '7H'");
 
         driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
         assertEquals(2, server.getNextPlayer());
     }
     @Test
@@ -259,9 +258,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
         js1.executeScript("document.getElementById('discard').innerHTML = '3S'");
@@ -269,7 +268,7 @@ public class AcceptanceTest {
 
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
 
         js2.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
         js2.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
@@ -278,7 +277,7 @@ public class AcceptanceTest {
 
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
         driver2.findElement(By.id("passButton")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
 
         js3.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3C')");
         js3.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3C'");
@@ -287,7 +286,7 @@ public class AcceptanceTest {
 
         driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :first-child")).click();
         driver3.findElement(By.id("passButton")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
 
         js4.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', 'QC')");
         js4.executeScript("document.getElementById('cards').firstElementChild.innerHTML = 'QC'");
@@ -310,9 +309,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-//        Thread.sleep(1000);
+//        Thread.sleep(310);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', 'KH')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = 'KH'");
         js1.executeScript("document.getElementById('discard').innerHTML = 'KC'");
@@ -327,9 +326,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '7C')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '7C'");
         js1.executeScript("document.getElementById('discard').innerHTML = 'KC'");
@@ -344,9 +343,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '8H')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '8H'");
         js1.executeScript("document.getElementById('discard').innerHTML = 'KC'");
@@ -366,9 +365,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '8H')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '8H'");
         js1.executeScript("document.getElementById('discard').innerHTML = 'KC'");
@@ -388,9 +387,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3H')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3H'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
@@ -411,7 +410,7 @@ public class AcceptanceTest {
         assertEquals("hidden", passB.getCssValue("visibility"));
         assertEquals("visible", drawB.getCssValue("visibility"));
         drawB.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').children[1].setAttribute('id', '6C')");
         js1.executeScript("document.getElementById('cards').children[1].innerHTML = '6C'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
@@ -426,9 +425,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3H')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3H'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
@@ -449,14 +448,14 @@ public class AcceptanceTest {
         assertEquals("hidden", passB.getCssValue("visibility"));
         assertEquals("visible", drawB.getCssValue("visibility"));
         drawB.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').children[1].setAttribute('id', '6D')");
         js1.executeScript("document.getElementById('cards').children[1].innerHTML = '6D'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
         js1.executeScript("cards = ['3H','6D']");
 
         drawB.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').children[2].setAttribute('id', '5C')");
         js1.executeScript("document.getElementById('cards').children[2].innerHTML = '5C'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
@@ -471,9 +470,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3H')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3H'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
@@ -494,7 +493,7 @@ public class AcceptanceTest {
         assertEquals("hidden", passB.getCssValue("visibility"));
         assertEquals("visible", drawB.getCssValue("visibility"));
         drawB.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').children[1].setAttribute('id', '6D')");
         js1.executeScript("document.getElementById('cards').children[1].innerHTML = '6D'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
@@ -502,7 +501,7 @@ public class AcceptanceTest {
         js1.executeScript("renderCards()");
 
         drawB.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').children[2].setAttribute('id', '5S')");
         js1.executeScript("document.getElementById('cards').children[2].innerHTML = '5S'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
@@ -510,7 +509,7 @@ public class AcceptanceTest {
         js1.executeScript("renderCards()");
 
         drawB.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').children[3].setAttribute('id', '7H')");
         js1.executeScript("document.getElementById('cards').children[3].innerHTML = '7H'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
@@ -526,9 +525,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3H')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3H'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
@@ -549,7 +548,7 @@ public class AcceptanceTest {
         assertEquals("hidden", passB.getCssValue("visibility"));
         assertEquals("visible", drawB.getCssValue("visibility"));
         drawB.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').children[1].setAttribute('id', '6D')");
         js1.executeScript("document.getElementById('cards').children[1].innerHTML = '6D'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
@@ -557,7 +556,7 @@ public class AcceptanceTest {
         js1.executeScript("renderCards()");
 
         drawB.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').children[2].setAttribute('id', '5S')");
         js1.executeScript("document.getElementById('cards').children[2].innerHTML = '5S'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
@@ -565,7 +564,7 @@ public class AcceptanceTest {
         js1.executeScript("renderCards()");
 
         drawB.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').children[3].setAttribute('id', '4H')");
         js1.executeScript("document.getElementById('cards').children[3].innerHTML = '4H'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
@@ -584,9 +583,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').firstElementChild.setAttribute('id', '3H')");
         js1.executeScript("document.getElementById('cards').firstElementChild.innerHTML = '3H'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
@@ -607,7 +606,7 @@ public class AcceptanceTest {
         assertEquals("hidden", passB.getCssValue("visibility"));
         assertEquals("visible", drawB.getCssValue("visibility"));
         drawB.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').children[1].setAttribute('id', '6D')");
         js1.executeScript("document.getElementById('cards').children[1].innerHTML = '6D'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
@@ -615,7 +614,7 @@ public class AcceptanceTest {
         js1.executeScript("renderCards()");
 
         drawB.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         js1.executeScript("document.getElementById('cards').children[2].setAttribute('id', '8H')");
         js1.executeScript("document.getElementById('cards').children[2].innerHTML = '8H'");
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
@@ -627,7 +626,7 @@ public class AcceptanceTest {
         assertNotNull(alert);
         alert.sendKeys("C");
         alert.accept();
-        Thread.sleep(300);
+        Thread.sleep(100);
         WebElement discard = driver1.findElement(By.id("discard"));
         assertEquals("8C", discard.getText());
     }
@@ -637,9 +636,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
         js1.executeScript("cards =['KS','3C']");
@@ -651,7 +650,7 @@ public class AcceptanceTest {
         assertEquals("hidden", passB.getCssValue("visibility"));
         assertEquals("visible", drawB.getCssValue("visibility"));
         drawB.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
         js1.executeScript("cards = ['KS','3C','6C']");
@@ -659,7 +658,7 @@ public class AcceptanceTest {
 
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(3)")).click();
 
-        Thread.sleep(500);
+        Thread.sleep(100);
         WebElement discard = driver1.findElement(By.id("discard"));
         assertEquals("6C", discard.getText());
     }
@@ -669,21 +668,21 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
         js1.executeScript("cards =['2C','4D']");
         js1.executeScript("renderCards()");
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
-        Thread.sleep(500);
+        Thread.sleep(100);
         WebElement discard = driver1.findElement(By.id("discard"));
         assertEquals("2C", discard.getText());
         js2.executeScript("cards =['4H']");
         js2.executeScript("renderCards()");
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
 
         WebElement drawB = driver2.findElement(By.id("drawButton"));
         WebElement passB = driver2.findElement(By.id("passButton"));
@@ -692,14 +691,14 @@ public class AcceptanceTest {
         assertEquals("visible", drawB.getCssValue("visibility"));
         drawB.click();
         drawB.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 //        js2.executeScript("document.getElementById('discard').innerHTML = '7C'");
         js2.executeScript("cards = ['4H','6C','9D']");
         js2.executeScript("renderCards()");
 
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(2)")).click();
 
-        Thread.sleep(500);
+        Thread.sleep(100);
         discard = driver2.findElement(By.id("discard"));
         assertEquals("6C", discard.getText());
     }
@@ -709,21 +708,21 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
         js1.executeScript("cards =['2C','4D']");
         js1.executeScript("renderCards()");
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
-        Thread.sleep(500);
+        Thread.sleep(100);
         WebElement discard = driver1.findElement(By.id("discard"));
         assertEquals("2C", discard.getText());
         js2.executeScript("cards =['4H']");
         js2.executeScript("renderCards()");
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
 
         WebElement drawB = driver2.findElement(By.id("drawButton"));
         WebElement passB = driver2.findElement(By.id("passButton"));
@@ -732,20 +731,20 @@ public class AcceptanceTest {
         assertEquals("visible", drawB.getCssValue("visibility"));
         drawB.click();
         drawB.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 //        js2.executeScript("document.getElementById('discard').innerHTML = '7C'");
         js2.executeScript("cards = ['4H','6S','9D']");
         js2.executeScript("renderCards()");
         drawB.click();
         drawB.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 //        js2.executeScript("document.getElementById('discard').innerHTML = '7C'");
         js2.executeScript("cards = ['4H','6S','9D','9H','6C']");
         js2.executeScript("renderCards()");
 
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(5)")).click();
 
-        Thread.sleep(500);
+        Thread.sleep(100);
         discard = driver2.findElement(By.id("discard"));
         assertEquals("6C", discard.getText());
     }
@@ -755,22 +754,22 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
         js1.executeScript("cards =['2C','4D']");
         js1.executeScript("renderCards()");
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
-        Thread.sleep(500);
+        Thread.sleep(100);
         WebElement discard = driver1.findElement(By.id("discard"));
         assertEquals("2C", discard.getText());
 
         js2.executeScript("cards =['4H']");
         js2.executeScript("renderCards()");
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
 
         WebElement drawB = driver2.findElement(By.id("drawButton"));
         WebElement passB = driver2.findElement(By.id("passButton"));
@@ -779,14 +778,14 @@ public class AcceptanceTest {
         assertEquals("visible", drawB.getCssValue("visibility"));
         drawB.click();
         drawB.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 //        js2.executeScript("document.getElementById('discard').innerHTML = '7C'");
         js2.executeScript("cards = ['4H','6S','9D']");
         js2.executeScript("renderCards()");
         drawB.click();
         drawB.click();
         drawB.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 //        js2.executeScript("document.getElementById('discard').innerHTML = '7C'");
         js2.executeScript("cards = ['4H','6S','9D','9H','7S','5H']");
         js2.executeScript("renderCards()");
@@ -799,22 +798,22 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
         js1.executeScript("cards =['2C','4D']");
         js1.executeScript("renderCards()");
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
-        Thread.sleep(500);
+        Thread.sleep(100);
         WebElement discard = driver1.findElement(By.id("discard"));
         assertEquals("2C", discard.getText());
 
         js2.executeScript("cards =['4H']");
         js2.executeScript("renderCards()");
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
 
         WebElement drawB = driver2.findElement(By.id("drawButton"));
         WebElement passB = driver2.findElement(By.id("passButton"));
@@ -823,25 +822,29 @@ public class AcceptanceTest {
         assertEquals("visible", drawB.getCssValue("visibility"));
         drawB.click();
         drawB.click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 //        js2.executeScript("document.getElementById('discard').innerHTML = '7C'");
         js2.executeScript("cards = ['4H','2H','9D']");
         js2.executeScript("renderCards()");
+
+        js3.executeScript("cards = ['7D']");
+        js3.executeScript("renderCards()");
+        js3.executeScript("updateCards()");
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(2)")).click();
         passB.click();
-        WebElement drawB3 = driver3.findElement(By.id("drawButton"));
 
+        WebElement drawB3 = driver3.findElement(By.id("drawButton"));
         assertEquals("visible", drawB3.getCssValue("visibility"));
         drawB3.click();
         drawB3.click();
         drawB3.click();
         drawB3.click();
-        js3.executeScript("cards = ['7D','5S','6D','6H','7C'");
+        js3.executeScript("cards = ['7D','5S','6D','6H','7C']");
         js3.executeScript("renderCards()");
         js3.executeScript("updateCards()");
         driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(4)")).click();
 
-        Thread.sleep(500);
+        Thread.sleep(100);
         discard = driver3.findElement(By.id("discard"));
         assertEquals("6H", discard.getText());
     }
@@ -851,22 +854,22 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(1000);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
         js1.executeScript("cards =['2C','4D']");
         js1.executeScript("renderCards()");
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
-        Thread.sleep(500);
+        Thread.sleep(100);
         WebElement discard = driver1.findElement(By.id("discard"));
         assertEquals("2C", discard.getText());
 
         js2.executeScript("cards =['4C','6C','9D']");
         js2.executeScript("renderCards()");
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
 
         WebElement drawB = driver2.findElement(By.id("drawButton"));
         WebElement passB = driver2.findElement(By.id("passButton"));
@@ -874,15 +877,15 @@ public class AcceptanceTest {
         assertEquals("hidden", passB.getCssValue("visibility"));
         assertEquals("visible", drawB.getCssValue("visibility"));
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
-        Thread.sleep(500);
+        Thread.sleep(100);
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
-        Thread.sleep(500);
+        Thread.sleep(100);
 //        js2.executeScript("document.getElementById('discard').innerHTML = '7C'");
         assertEquals("visible", passB.getCssValue("visibility"));
         assertEquals("visible", drawB.getCssValue("visibility"));
         assertEquals(3,server.getNextPlayer());
         driver2.findElement(By.id("passButton")).click();
-        assertEquals(1,server.getNextPlayer());
+        assertEquals(4,server.getNextPlayer());
     }
     @Test
     void row73() throws InterruptedException {
@@ -890,22 +893,22 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-//        Thread.sleep(1000);
+//        Thread.sleep(310);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
 
         js1.executeScript("document.getElementById('discard').innerHTML = '7C'");
         js1.executeScript("cards =['2C','4D']");
         js1.executeScript("renderCards()");
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
         WebElement discard = driver1.findElement(By.id("discard"));
         assertEquals("2C", discard.getText());
 
         js2.executeScript("cards =['4C','6C']");
         js2.executeScript("renderCards()");
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
 
         WebElement drawB = driver2.findElement(By.id("drawButton"));
         WebElement passB = driver2.findElement(By.id("passButton"));
@@ -913,12 +916,23 @@ public class AcceptanceTest {
         assertEquals("hidden", passB.getCssValue("visibility"));
         assertEquals("visible", drawB.getCssValue("visibility"));
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
+        WebDriver[] drivers = new WebDriver[]{driver1, driver2,driver3,driver4};
+        Wait<WebDriver> wait;
+        Alert alert;
+        for(WebDriver d : drivers){
+            wait = new FluentWait<WebDriver>(d)
+                    .withTimeout(Duration.ofSeconds(5))
+                    .pollingEvery(Duration.ofSeconds(1))
+                    .ignoring(NoSuchElementException.class);
+            alert = wait.until(ExpectedConditions.alertIsPresent());
+            assertNotNull(alert);
+            alert.accept();
+        }
         WebElement welcomeMsg = driver1.findElement(By.id("welcome"));
-
         String val1 = welcomeMsg.getText();
         System.out.println(val1);
         assertEquals("Wait for Player2 to start the game", val1);
@@ -931,16 +945,16 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(500);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
         js1.executeScript("document.getElementById('discard').innerHTML = '3D'");
         js1.executeScript("cards =['1S','4D']");
         js1.executeScript("renderCards()");
         js1.executeScript("updateCards()");
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(2)")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
         js3.executeScript("cards =['8H','JH','6H','KH','KS']");
         js3.executeScript("renderCards()");
         js3.executeScript("updateCards()");
@@ -954,10 +968,10 @@ public class AcceptanceTest {
         js2.executeScript("updateCards()");
 
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
 
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
-        Thread.sleep(300);
+        Thread.sleep(100);
         WebDriver[] drivers = new WebDriver[]{driver1, driver2,driver3,driver4};
         Wait<WebDriver> wait;
         Alert alert;
@@ -980,9 +994,9 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(500);
+        Thread.sleep(100);
         driver1.findElement(By.id("startButton")).click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
         js1.executeScript("document.getElementById('discard').innerHTML = '4D'");
 
@@ -1004,15 +1018,15 @@ public class AcceptanceTest {
 
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver2.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver3.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         assertEquals("hidden", driver4.findElement(By.id("passButton")).getCssValue("visibility"));
         driver4.findElement(By.id("drawButton")).click();
@@ -1034,19 +1048,19 @@ public class AcceptanceTest {
 
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver2.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver3.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(6)")).click();
         driver4.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver1.findElement(By.id("drawButton")).click();
         driver1.findElement(By.id("drawButton")).click();
@@ -1056,19 +1070,19 @@ public class AcceptanceTest {
         js1.executeScript("updateCards()");
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(5)")).click();
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver2.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver3.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(6)")).click();
         driver4.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver1.findElement(By.id("drawButton")).click();
 
@@ -1077,7 +1091,7 @@ public class AcceptanceTest {
         js1.executeScript("updateCards()");
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(5)")).click();
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         Thread.sleep(100);
@@ -1091,24 +1105,24 @@ public class AcceptanceTest {
         assertNotNull(alert);
         alert.sendKeys("D");
         alert.accept();
-        Thread.sleep(200);
+        Thread.sleep(100);
         assertEquals("8D", driver2.findElement(By.id("discard")).getText());
         driver2.findElement(By.id("passButton")).click();
 
         driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver3.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver4.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(3)")).click();
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         WebDriver[] drivers = new WebDriver[]{driver1, driver2,driver3,driver4};
         for(WebDriver d : drivers){
@@ -1126,7 +1140,7 @@ public class AcceptanceTest {
         assertTrue(val1.contains("21.0.3.39."));
 
         assertEquals(2, server.getCurrentRoundStarter());
-        Thread.sleep(200);
+        Thread.sleep(100);
         driver2.findElement(By.id("startButton")).click();
         js2.executeScript("document.getElementById('discard').innerHTML = '4D'");
 
@@ -1148,59 +1162,59 @@ public class AcceptanceTest {
 
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver2.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver3.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver4.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(2)")).click();
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver2.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver3.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver4.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(2)")).click();
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver2.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver3.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver4.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver1.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(2)")).click();
         driver1.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver2.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver2.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
         driver3.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver4.findElement(By.id("drawButton")).click();
 
@@ -1222,7 +1236,7 @@ public class AcceptanceTest {
 
         driver4.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(5)")).click();
         driver4.findElement(By.id("passButton")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
 
         driver1.findElement(By.id("drawButton")).click();
 
@@ -1270,7 +1284,7 @@ public class AcceptanceTest {
         Thread.sleep(100);
 
         driver3.findElement(By.id("cards")).findElement(By.cssSelector("div > :nth-child(1)")).click();
-        Thread.sleep(200);
+        Thread.sleep(100);
         for(WebDriver d : drivers){
             wait = new FluentWait<WebDriver>(d)
                     .withTimeout(Duration.ofSeconds(5))
@@ -1283,7 +1297,7 @@ public class AcceptanceTest {
         table = driver3.findElement(By.id("table"));
         val1 = table.getText();
         assertTrue(val1.contains("38.36.0.75."));
-        Thread.sleep(200);
+        Thread.sleep(100);
         WebElement finalScore = driver3.findElement(By.id("finalScore"));
         String val2 = finalScore.getText();
         assertEquals("59.36.3.114", val2);

@@ -78,9 +78,9 @@
             ).join('')
         }
 
-        function checkSelection(selection, suit, discard){
-            if(selection == "8") return true;
-            if(selection != discard.slice(0, -1) && suit != discard.slice(-1)) return false;
+        function checkSelection(rank, suit, discard){
+            if(rank == "8") return true;
+            if(rank != discard.slice(0, -1) && suit != discard.slice(-1)) return false;
             return true;
         }
 
@@ -173,23 +173,28 @@
                     document.getElementById('cards').style.pointerEvents = "auto";
                     if(two_counts!=0){
                         console.log("turn,cards: "+cards);
-                        if(cards.length<factor){
+                        // if(cards.length<factor){
+                        if(cards.length<two_counts){
                             // draw();
                             // draw();
                         }else{
-                            counts = {};
-                            totalC = [...cards, discardPile.innerHTML];
-                            console.log(totalC);
-                            for(const ch of totalC){
-                                let first = ch.slice(0,-1);
-                                let second = ch.slice(-1);
-                                counts[first] = counts[first] ? counts[first] + 1 : 1;
-                                counts[second] = counts[second] ? counts[second] + 1 : 1;
-                            }
-                            console.log(counts);
-                            console.log(Object.values(counts));
-                            let freq = Object.values(counts);
-                            if(freq.some(el => el > 1)) two_counts=0;
+                            // counts = {};
+                            // // totalC = [...cards, discardPile.innerHTML];
+                            // totalC = [...cards];
+
+                            // // console.log(totalC);
+                            // for(const ch of totalC){
+                            //     let first = ch.slice(0,-1);
+                            //     let second = ch.slice(-1);
+                            //     counts[first] = counts[first] ? counts[first] + 1 : 1;
+                            //     counts[second] = counts[second] ? counts[second] + 1 : 1;
+                            // }
+                            // console.log(counts);
+                            // console.log(Object.values(counts));
+                            // let freq = Object.values(counts);
+                            // if(freq.some(el => el > 1)) two_counts=0;
+                            let c_copy = [...cards];
+                            if(check(c_copy, discardPile.innerHTML) >= two_counts) two_counts = 0;
                         }
                     }
                 }
@@ -199,6 +204,7 @@
                 console.log("received two");
                 two_counts = arr[1];
                 factor = arr[1];
+                console.log(two_counts);
             }else if(arr[0]=="end"){
                 cards = []
                 current_round_starter = arr[1];
@@ -232,6 +238,9 @@
                 alert("Player "+arr[1]+" won the round");
             }
         }
+        function checkTwo(){
+
+        }
         function wsClose(event){
             // echoText.value += "Disconnect ... \n";
             console.log(event);
@@ -255,6 +264,8 @@
         function pass(){
             drawButton.style.visibility = "hidden";
             passButton.style.visibility = "hidden";
+            two_counts = 0;
+            factor = 1;
             wsSendMessage("pass,"+player_id);
         }
         function draw(){
@@ -282,6 +293,24 @@
             console.log(cards_string);
             wsSendMessage("updateCards,"+cards_string+","+player_id);
         }
+
+        function check(cs, currCard){
+            if(cs.length==0) return 0;
+            if(cs.length==1 && checkSelection(cs[0].slice(0,-1), cs[0].slice(-1), currCard)){
+                return 1;
+            } 
+            if(cs.length==1) return 0;            
+            let ans = 0;
+            for(let ind = 0;ind<cs.length;ind++){
+                console.log(ind);
+                if(checkSelection(cs[ind].slice(0,-1), cs[ind].slice(-1), currCard)){
+                    let c = cs[ind];
+                    ans = Math.max(ans,1+check(cs.filter(item => item !== c), c));
+                }
+            }
+            return ans;
+        }
+
     </script>
 </body>
 </html>
