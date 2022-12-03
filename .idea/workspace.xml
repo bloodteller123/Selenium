@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="49ba2b5f-1fde-4046-886a-6fe3ee2ea557" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/crazyEight/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crazyEight/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/crazyEight/AcceptanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/crazyEight/AcceptanceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/game.html" afterDir="false" />
     </list>
@@ -58,7 +59,20 @@
       <recent name="$PROJECT_DIR$/src/test/java" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AcceptanceTest.row58">
+  <component name="RunManager" selected="Application.Server">
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="crazyEight.Server" />
+      <module name="crazy8" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="crazyEight.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AcceptanceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="crazy8" />
       <extension name="coverage">
@@ -122,29 +136,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AcceptanceTest.row73" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="crazy8" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="crazyEight.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="crazyEight" />
-      <option name="MAIN_CLASS_NAME" value="crazyEight.AcceptanceTest" />
-      <option name="METHOD_NAME" value="row73" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Server" />
         <item itemvalue="JUnit.AcceptanceTest.row58" />
         <item itemvalue="JUnit.AcceptanceTest" />
         <item itemvalue="JUnit.AcceptanceTest.row70" />
         <item itemvalue="JUnit.AcceptanceTest.row72" />
-        <item itemvalue="JUnit.AcceptanceTest.row73" />
       </list>
     </recent_temporary>
   </component>

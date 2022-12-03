@@ -60,10 +60,10 @@ public class AcceptanceTest {
     }
     @AfterEach
     void teardown() throws InterruptedException {
-//        driver1.quit();
-//        driver2.quit();
-//        driver3.quit();
-//        driver4.quit();
+        driver1.quit();
+        driver2.quit();
+        driver3.quit();
+        driver4.quit();
         server.stop();
     }
     @Test

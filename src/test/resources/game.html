@@ -275,6 +275,7 @@
                 wsSendMessage("draw,"+player_id);
                 
             }else{
+                passButton.style.visibility = "visible";
                 if(counter<3){
                 console.log("DRAW");
                 counter++;
@@ -283,8 +284,8 @@
                 }
                 console.log(counter);
                 if(counter>=3){
-                passButton.style.visibility = "visible";
-                drawButton.style.visibility = "hidden";
+                    passButton.style.visibility = "visible";
+                    drawButton.style.visibility = "hidden";
                 }
             }
         }

@@ -74,7 +74,7 @@ public class Server extends WebSocketServer {
                 dealCard(0);
                 updateDiscard(deck.drawCard().toString());
                 updateStock();
-                broadcast("turn,"+current_player_id+","+next_player_id);
+                broadcast("turn,"+current_player_id+","+next_player_id+","+(reverse?"right":"left"));
                 break;
             case "discard":
                 removeCards(msgs[1], Integer.parseInt(msgs[2]), msgs[3]);
