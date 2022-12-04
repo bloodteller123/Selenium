@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49ba2b5f-1fde-4046-886a-6fe3ee2ea557" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/test/java/crazyEight/AcceptanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/crazyEight/AcceptanceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/crazyEight/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crazyEight/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/crazyEight/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/crazyEight/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/game.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +60,19 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.AcceptanceTest (1)">
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="crazyEight.Server" />
+      <module name="A3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="crazyEight.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AcceptanceTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="A3" />
       <extension name="coverage">
@@ -72,7 +88,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AcceptanceTest.row42" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AcceptanceTest.row58" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="A3" />
       <extension name="coverage">
         <pattern>
@@ -82,13 +98,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="crazyEight" />
       <option name="MAIN_CLASS_NAME" value="crazyEight.AcceptanceTest" />
-      <option name="METHOD_NAME" value="row42" />
+      <option name="METHOD_NAME" value="row58" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AcceptanceTest.row45" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AcceptanceTest.row59" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="A3" />
       <extension name="coverage">
         <pattern>
@@ -98,13 +114,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="crazyEight" />
       <option name="MAIN_CLASS_NAME" value="crazyEight.AcceptanceTest" />
-      <option name="METHOD_NAME" value="row45" />
+      <option name="METHOD_NAME" value="row59" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AcceptanceTest.row46" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AcceptanceTest.row81" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="A3" />
       <extension name="coverage">
         <pattern>
@@ -114,23 +130,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="crazyEight" />
       <option name="MAIN_CLASS_NAME" value="crazyEight.AcceptanceTest" />
-      <option name="METHOD_NAME" value="row46" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AcceptanceTest.row48" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="A3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="crazyEight.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="crazyEight" />
-      <option name="MAIN_CLASS_NAME" value="crazyEight.AcceptanceTest" />
-      <option name="METHOD_NAME" value="row48" />
+      <option name="METHOD_NAME" value="row81" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -139,10 +139,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.AcceptanceTest (1)" />
-        <item itemvalue="JUnit.AcceptanceTest.row46" />
-        <item itemvalue="JUnit.AcceptanceTest.row48" />
-        <item itemvalue="JUnit.AcceptanceTest.row45" />
-        <item itemvalue="JUnit.AcceptanceTest.row42" />
+        <item itemvalue="Application.Server" />
+        <item itemvalue="JUnit.AcceptanceTest.row81" />
+        <item itemvalue="JUnit.AcceptanceTest.row59" />
+        <item itemvalue="JUnit.AcceptanceTest.row58" />
       </list>
     </recent_temporary>
   </component>

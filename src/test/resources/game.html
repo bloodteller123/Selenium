@@ -53,6 +53,7 @@
         let two_counts = 0;
         let counts;
         let factor = 1;
+        let drawn = false;
         document.getElementById('cards').style.pointerEvents = "none";
 
         webSocket.onopen = function(event){ wsOpen(event);};
@@ -83,6 +84,7 @@
                 <div id="${c}" onclick="selectCard(this)" style="width:50px;height:30px;border: 1rem solid;margin: 0 auto">${c}</div>
                 `
             ).join('')
+
         }
 
         function checkSelection(rank, suit, discard){
@@ -109,6 +111,11 @@
                     wsSendMessage("special,"+ele.id[0]+","+2*factor);
                 }
                 element.remove();
+                if(drawn) {
+                    document.getElementById('cards').style.pointerEvents = "none";
+                    drawButton.style.visibility = "hidden";
+                    passButton.style.visibility = "visible";
+                }
             }else{
                 alert("Invalid selection");
             }
@@ -206,11 +213,14 @@
                 current_round_starter = arr[1];
                 player_indication.innerHTML = "Current player is player" +current_round_starter+" Next player will be player" + arr[2]; 
                 welcomeMsg.innerHTML = "Wait for Player"+current_round_starter+" to start the game";
-                if(player_id==current_round_starter) startButton.style.visibility = "visible";
+                two_counts = 0;
+                console.log(player_id, current_round_starter);
+                if(player_id==current_round_starter){
+                    startButton.style.visibility = "visible";}
                 else{
                     startButton.style.visibility = "hidden";
                     startButton.innerText = "START";
-                    startButton.disabled="false";
+                    document.getElementById('startButton').style.pointerEvents = "auto";
                 }
             }else if(arr[0]=="score"){
                 console.log("score: ", arr[1]);
@@ -254,7 +264,7 @@
         function start(){
             wsSendMessage("start,"+player_id);
             startButton.innerText = "STARTED";
-            startButton.disabled="true";
+            document.getElementById('startButton').style.pointerEvents = "none";
         }
         function end(){
             wsSendMessage("end,"+player_id);
@@ -265,6 +275,7 @@
             passButton.style.visibility = "hidden";
             two_counts = 0;
             factor = 1;
+            drawn = false;
             wsSendMessage("pass,"+player_id);
         }
         function draw(){
@@ -276,6 +287,7 @@
             }else{
                 // console.log(278);
                 // passButton.style.visibility = "visible";
+                drawn = true;
                 if(counter<3){
                 console.log("DRAW");
                 counter++;
@@ -304,7 +316,6 @@
             if(cs.length==1) return 0;            
             let ans = 0;
             for(let ind = 0;ind<cs.length;ind++){
-                console.log(ind);
                 if(checkSelection(cs[ind].slice(0,-1), cs[ind].slice(-1), currCard)){
                     let c = cs[ind];
                     ans = Math.max(ans,1+check(cs.filter(item => item !== c), c));

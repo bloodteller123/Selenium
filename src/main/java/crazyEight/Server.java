@@ -164,7 +164,9 @@ public class Server extends WebSocketServer {
         // send score
 //        System.out.println(conns.size());
         String score = "";
-        for(Player p: players) score+= p.calculateScore()+".";
+        for(Player p: players) {
+            score+= p.calculateScore()+".";
+        }
         System.out.println("score: "+score);
 //        broadcast("score,"+score);
         for(WebSocket wb : conns){
@@ -214,6 +216,7 @@ public class Server extends WebSocketServer {
     public void updateScore(){
         for(Player p: players){
             p.setScore(p.calculateScore());
+            p.reset();
         }
     }
     @Override

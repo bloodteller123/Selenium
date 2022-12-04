@@ -30,6 +30,7 @@ public class Player {
         this.score += val;
     }
     public int calculateScore(){
+        System.out.println(this.cards);
         int totalScore = 0;
         for(Card card : this.cards){
             if(card.getRank().equals("8")){
@@ -48,4 +49,5 @@ public class Player {
     public List<Card> getCards(){
         return this.cards;
     }
+    public void reset(){this.cards = new ArrayList<>();}
 }
