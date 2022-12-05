@@ -73,7 +73,14 @@ public class Server extends WebSocketServer {
                 next_player_id = current_player_id%conns.size()+1;
                 broadcast("start,"+current_player_id);
                 dealCard(0);
-                updateDiscard(deck.drawCard().toString());
+                String disc = deck.drawCard().toString();
+                Random rand = new Random();
+                while(disc.substring(0, disc.length() - 1).equals("8")){
+                    int rand_ind = rand.nextInt(deck.getCardsSize());
+                    deck.insert(rand_ind);
+                    disc = deck.drawCard().toString();
+                }
+                updateDiscard(disc);
                 updateStock();
                 broadcast("turn,"+current_player_id+","+next_player_id+","+(reverse?"right":"left"));
                 break;

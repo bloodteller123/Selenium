@@ -41,5 +41,10 @@ public class Deck {
         return this.cards.size();
     }
     public Deck getDeck(){return this;}
+    public void insert(int position){
+        Card c = this.cards.remove(--index);
+        this.cards.add(position, c);
+        System.out.println(this.cards);
+    }
 }
 
