@@ -51,17 +51,14 @@ public class AcceptanceTest {
         js4 = (JavascriptExecutor) driver4;
 
         sampleFile = Paths.get(path);
-        System.out.println("Server1");
         server = new Server(8800);
-        System.out.println("Server2");
         server.start();
-        System.out.println("Server3");
 
         driver1.get(sampleFile.toUri().toString());
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(500);
+        Thread.sleep(600);
     }
     @AfterEach
     void teardown() throws InterruptedException {
