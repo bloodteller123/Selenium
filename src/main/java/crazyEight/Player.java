@@ -38,7 +38,8 @@ public class Player {
             }else if(card.getRank().equals("J") || card.getRank().equals("Q") || card.getRank().equals("K")){
                 totalScore+=10;
             }else{
-                totalScore+=Integer.parseInt(card.getRank());
+                String ss = card.getRank().equals("A")? "1":card.getRank();
+                totalScore+=Integer.parseInt(ss);
             }
         }
         return totalScore;

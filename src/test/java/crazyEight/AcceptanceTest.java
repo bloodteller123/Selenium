@@ -58,7 +58,7 @@ public class AcceptanceTest {
         driver2.get(sampleFile.toUri().toString());
         driver3.get(sampleFile.toUri().toString());
         driver4.get(sampleFile.toUri().toString());
-        Thread.sleep(600);
+        Thread.sleep(800);
     }
     @AfterEach
     void teardown() throws InterruptedException {
