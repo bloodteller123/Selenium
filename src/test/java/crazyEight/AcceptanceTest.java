@@ -1209,14 +1209,15 @@ public class AcceptanceTest {
             alert = wait.until(ExpectedConditions.alertIsPresent());
             assertNotNull(alert);
             alert.accept();
+
+            table = d.findElement(By.id("table"));
+            val1 = table.getText();
+            assertTrue(val1.contains("38.36.0.75."));
+            Thread.sleep(100);
+            WebElement finalScore = d.findElement(By.id("finalScore"));
+            String val2 = finalScore.getText();
+            assertEquals("59.36.3.114", val2);
         }
-        table = driver3.findElement(By.id("table"));
-        val1 = table.getText();
-        assertTrue(val1.contains("38.36.0.75."));
-        Thread.sleep(100);
-        WebElement finalScore = driver3.findElement(By.id("finalScore"));
-        String val2 = finalScore.getText();
-        assertEquals("59.36.3.114", val2);
         assertEquals("3", server.getWinner());
     }
 }
